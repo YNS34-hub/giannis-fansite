@@ -206,8 +206,81 @@ function initLazyImages() {
   document.querySelectorAll('img[loading="lazy"]').forEach(img => lazyObserver.observe(img));
 }
 
+// ── Intro Video Overlay ──
+function initIntro() {
+  const overlay = document.getElementById('introOverlay');
+  if (!overlay) return;
+
+  // 当前标签页只播放一次
+  if (sessionStorage.getItem('giannisIntroPlayed') === 'true') {
+    overlay.remove();
+    return;
+  }
+
+  const pre = document.getElementById('introPre');
+  const video = document.getElementById('introVideo');
+  const enterBtn = document.getElementById('introEnterBtn');
+  const skipBtn = document.getElementById('introSkip');
+
+  let introDone = false;
+
+  function finishIntro() {
+    if (introDone) return;
+    introDone = true;
+    sessionStorage.setItem('giannisIntroPlayed', 'true');
+    overlay.classList.add('is-hidden');
+    // 800ms 后移除 DOM，匹配 CSS transition
+    setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 800);
+  }
+
+  // 视频加载失败直接进入主页
+  video.addEventListener('error', () => {
+    if (!introDone) finishIntro();
+  });
+
+  // 视频无法播放时（如格式不支持）
+  video.addEventListener('stalled', () => {
+    // stalled 可能只是缓冲，等待 1s 后若还没开始播放则跳过
+    setTimeout(() => {
+      if (!introDone && video.readyState < 2) finishIntro();
+    }, 1000);
+  });
+
+  // 点击 ENTER THE COURT
+  enterBtn.addEventListener('click', () => {
+    pre.classList.add('is-hidden');
+    video.src = 'assets/intro/giannis-intro.webm';
+    video.classList.add('is-playing');
+    skipBtn.classList.add('is-visible');
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // 自动播放被阻止或加载失败
+        if (!introDone) finishIntro();
+      });
+    }
+  });
+
+  // 视频播放结束
+  video.addEventListener('ended', () => {
+    finishIntro();
+  });
+
+  // SKIP 按钮
+  skipBtn.addEventListener('click', () => {
+    video.pause();
+    finishIntro();
+  });
+
+  // 开始预加载视频
+  video.src = 'assets/intro/giannis-intro.webm';
+  video.load();
+}
+
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
+  initIntro();
   renderVideos();
   renderGallery();
   initGalleryFilters();
