@@ -28,6 +28,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body); background: var(--black); color: var(--text);
   line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* ── Navigation ── */
@@ -58,7 +59,7 @@ body {
 
 /* ── Hero ── */
 .hero {
-  position: relative; width: 100vw; min-height: 100vh;
+  position: relative; width: 100%; min-height: 100vh;
   overflow: hidden; border-bottom: 1px solid var(--gray-border);
 }
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
@@ -203,6 +204,17 @@ body {
 .origin-layout {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
   background: var(--gray-border); border-bottom: 1px solid var(--gray-border);
+  position: relative; overflow: hidden;
+}
+/* Watermark */
+.origin-layout::before {
+  content: 'GREEK FREAK';
+  position: absolute; inset: 0; z-index: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: clamp(6rem, 12vw, 14rem);
+  font-weight: 900; letter-spacing: -0.04em;
+  color: var(--white); opacity: 0.04; pointer-events: none;
+  white-space: nowrap; user-select: none;
 }
 @media (max-width: 1024px) { .origin-layout { grid-template-columns: 45fr 55fr; } }
 @media (max-width: 768px) { .origin-layout { grid-template-columns: 1fr; } }
@@ -210,7 +222,7 @@ body {
 /* Left: Image Card */
 .origin-image-card {
   position: relative; overflow: hidden; background: var(--black);
-  min-height: 500px;
+  min-height: 500px; z-index: 1;
 }
 @media (max-width: 768px) { .origin-image-card { min-height: 420px; max-height: 420px; } }
 .origin-image-card img {
@@ -238,32 +250,94 @@ body {
 }
 .origin-tags .dot { color: var(--gray-border); font-size: 8px; }
 
-/* Right: Chapter Cards */
+/* ── Origin Route Text ── */
+.origin-route {
+  font-family: var(--font-body); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-mid);
+  margin-top: -32px; margin-bottom: 0;
+}
+.route-arrow { color: var(--gray-light); margin: 0 6px; }
+
+/* Right: Story Cards */
 .origin-chapters {
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; position: relative; z-index: 1;
 }
-.chapter-card {
-  flex: 1; display: flex; gap: 24px; padding: 40px;
-  background: var(--black); border-bottom: 1px solid var(--gray-border);
-  transition: background 0.25s;
-  align-items: flex-start;
+.story-card {
+  flex: 1; display: flex; gap: 0; background: var(--black);
+  border-bottom: 1px solid var(--gray-border);
+  transition: background 0.25s; position: relative;
 }
-.chapter-card:last-child { border-bottom: none; }
-.chapter-card:hover { background: var(--surface); }
-@media (max-width: 768px) { .chapter-card { padding: 28px 24px; gap: 16px; } }
-.chapter-num {
+.story-card:last-child { border-bottom: none; }
+.story-card:hover { background: var(--surface); }
+
+/* Timeline */
+.story-timeline {
+  width: 32px; flex-shrink: 0; position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 28px;
+}
+.story-dot {
+  width: 8px; height: 8px; flex-shrink: 0;
+  background: var(--gray-mid); transition: background 0.25s;
+  z-index: 1;
+}
+.story-card:hover .story-dot { background: #00471B; }
+.story-line {
+  flex: 1; width: 1px; background: var(--gray-border);
+  margin-top: 0; transition: background 0.25s;
+}
+.story-card:last-child .story-line { display: none; }
+.story-card:hover .story-line { background: var(--gray-mid); }
+
+/* Story Body */
+.story-body {
+  flex: 1; display: grid; grid-template-columns: 60px 1fr 180px;
+  gap: 20px; padding: 28px 32px 28px 8px; align-items: flex-start;
+}
+@media (max-width: 900px) {
+  .story-body { grid-template-columns: 50px 1fr; }
+  .story-thumb { display: none; }
+}
+@media (max-width: 640px) {
+  .story-body { grid-template-columns: 36px 1fr; gap: 12px; padding: 20px 16px 20px 4px; }
+}
+
+.story-num {
   font-family: var(--font-display); font-size: 2.5rem; font-weight: 800;
   letter-spacing: -0.03em; color: var(--gray-mid); line-height: 1;
-  flex-shrink: 0; transition: color 0.25s;
+  transition: color 0.25s; text-align: right;
 }
-.chapter-card:hover .chapter-num { color: var(--white); }
-.chapter-content h4 {
+.story-card:hover .story-num { color: var(--white); }
+
+.story-content h4 {
   font-family: var(--font-body); font-size: 16px; font-weight: 600;
   color: var(--white); margin-bottom: 6px; letter-spacing: -0.01em;
 }
-.chapter-content p {
+.story-content p {
   font-family: var(--font-body); font-size: 14px; line-height: 1.65;
-  color: var(--text-dim); max-width: 420px;
+  color: var(--text-dim); max-width: 480px;
+}
+
+/* Story Tags */
+.story-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.story-tag {
+  font-family: var(--font-body); font-size: 9px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gray-light); border: 1px solid var(--gray-mid);
+  padding: 4px 10px; transition: all 0.2s;
+}
+.story-card:hover .story-tag {
+  border-color: var(--gray-light); color: var(--text-dim);
+}
+
+/* Story Thumbnail */
+.story-thumb {
+  width: 180px; height: 120px; object-fit: cover; display: block;
+  filter: grayscale(30%); transition: filter 0.4s ease, transform 0.4s ease;
+  border: 1px solid var(--gray-border);
+}
+.story-card:hover .story-thumb {
+  filter: grayscale(0%); transform: scale(1.03);
 }
 
 /* ── Playing Identity ── */
@@ -472,6 +546,13 @@ body {
   background: transparent; color: var(--white); outline: 1px solid var(--white);
 }
 .btn-ghost:hover { background: var(--white); color: var(--black); }
+
+/* ── Page CTA ── */
+.page-cta {
+  padding: 120px 0; text-align: center;
+  border-bottom: 1px solid var(--gray-border);
+}
+.page-cta .btn { margin-top: 24px; }
 
 /* ── Footer ── */
 .footer {
