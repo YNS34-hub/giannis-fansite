@@ -7,373 +7,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --black: #000000;
-    --white: #FFFFFF;
-    --gray-dark: #121212;
-    --gray-mid: #353535;
-    --gray-light: #8E9192;
-    --gray-border: #444748;
-    --surface: #131313;
-    --surface-high: #1F1F1F;
-    --text: #E2E2E2;
-    --text-dim: #C4C7C8;
-    --text-muted: #8E9192;
-    --font-display: 'Epilogue', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --section-gap: 160px;
-    --grid-margin: 40px;
-    --element-gap: 20px;
-    --nav-padding: 10px;
-  }
-
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font-body); background: var(--black); color: var(--text);
-    line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* ── Navigation ── */
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: var(--nav-padding) var(--grid-margin);
-    background: var(--black); border-bottom: 1px solid var(--gray-border);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav-brand {
-    font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);
-    text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light);
-    text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-  @media (max-width: 768px) { .nav-links { display: none; } .nav { padding: var(--nav-padding) 20px; } }
-
-  /* ── Container ── */
-  .container { max-width: 1800px; margin: 0 auto; padding: 0 var(--grid-margin); }
-  @media (max-width: 768px) { .container { padding: 0 20px; } }
-
-  /* ── Hero ── */
-  .hero {
-    position: relative; width: 100vw; min-height: 100vh;
-    overflow: hidden; border-bottom: 1px solid var(--gray-border);
-  }
-  .hero-bg {
-    position: absolute; inset: 0; z-index: 0;
-  }
-  .hero-bg img {
-    width: 100%; height: 100%; object-fit: cover; object-position: center right;
-    display: block; filter: grayscale(25%);
-  }
-  .hero-mask {
-    position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.12) 100%);
-    pointer-events: none;
-  }
-  .hero-content {
-    position: relative; z-index: 2;
-    display: flex; align-items: center;
-    max-width: 1800px; margin: 0 auto;
-    min-height: 100vh; padding: 100px var(--grid-margin);
-  }
-  @media (max-width: 768px) {
-    .hero-content { padding: 100px 20px; }
-    .hero-mask {
-      background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.2) 100%);
-    }
-  }
-  .hero-text { max-width: 620px; }
-  .hero-tag {
-    font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light);
-    margin-bottom: var(--element-gap);
-  }
-  .hero-title {
-    font-family: var(--font-display); font-size: clamp(3.5rem, 8vw, 8rem); font-weight: 800;
-    line-height: 0.88; letter-spacing: -0.04em; color: var(--white);
-    margin-bottom: var(--element-gap);
-  }
-  .hero-title .line { display: block; }
-  .hero-title .line.outline {
-    color: transparent; -webkit-text-stroke: 1.5px var(--white);
-    -webkit-text-fill-color: transparent;
-  }
-  .hero-sub {
-    font-family: var(--font-body); font-size: 18px; font-weight: 400; line-height: 1.65;
-    color: var(--text-dim); max-width: 500px; margin-top: 24px;
-  }
-  .hero-meta {
-    display: flex; gap: 40px; margin-top: 32px;
-    padding-top: var(--element-gap); border-top: 1px solid var(--gray-border);
-  }
-  .hero-meta-item .num {
-    font-family: var(--font-display); font-size: 1.75rem; font-weight: 700;
-    letter-spacing: -0.02em; color: var(--white);
-  }
-  .hero-meta-item .lbl {
-    font-family: var(--font-body); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); margin-top: 4px;
-  }
-
-  /* ── Section ── */
-  .section { padding: var(--section-gap) 0; }
-  .section-label {
-    font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light);
-    margin-bottom: 12px;
-  }
-  .section-title {
-    font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.0; color: var(--white);
-    margin-bottom: 40px;
-  }
-
-  /* ── Project Row List ── */
-  .project-list { border-top: 1px solid var(--gray-border); }
-  .project-row {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 0.5fr; gap: 16px;
-    padding: 16px 0; border-bottom: 1px solid var(--gray-border);
-    align-items: center; cursor: pointer; transition: all 0.2s;
-  }
-  .project-row:hover { background: var(--surface); }
-  .project-row .name {
-    font-family: var(--font-body); font-size: 18px; font-weight: 400; color: var(--text-dim);
-    transition: color 0.2s;
-  }
-  .project-row:hover .name { color: var(--white); }
-  .project-row .meta {
-    font-family: var(--font-body); font-size: 14px; font-weight: 400; color: var(--gray-light);
-  }
-  .project-row .year {
-    font-family: var(--font-body); font-size: 14px; font-weight: 400; color: var(--gray-light);
-    text-align: right;
-  }
-  .col-header {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 0.5fr; gap: 16px;
-    padding: 12px 0; border-bottom: 1px solid var(--gray-border);
-  }
-  .col-header span {
-    font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light);
-  }
-  .col-header span:last-child { text-align: right; }
-
-  /* ── Figure / Player Profile ── */
-  .figure-section { padding: 0; border-top: 1px solid var(--gray-border); }
-  .figure-full {
-    position: relative; width: 100%; overflow: hidden;
-    border-bottom: 1px solid var(--gray-border);
-  }
-  .figure-full img {
-    width: 100%; height: auto; max-height: 90vh; object-fit: cover; display: block;
-    filter: grayscale(25%); transition: filter 0.6s ease;
-  }
-  .figure-full:hover img { filter: grayscale(0%); }
-  .figure-overlay {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 80px var(--grid-margin) 48px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
-    display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;
-  }
-  @media (max-width: 768px) {
-    .figure-overlay { flex-direction: column; align-items: flex-start; padding: 40px 20px 24px; }
-  }
-  .figure-overlay .quote {
-    font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700;
-    letter-spacing: -0.02em; color: var(--white); max-width: 600px; line-height: 1.15;
-  }
-  .figure-overlay .attribution {
-    font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); margin-top: 12px;
-  }
-  .figure-data {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-    background: var(--gray-border); border-bottom: 1px solid var(--gray-border);
-  }
-  @media (max-width: 768px) { .figure-data { grid-template-columns: repeat(2, 1fr); } }
-  .figure-data-cell {
-    background: var(--black); padding: 24px 28px;
-    transition: background 0.2s;
-  }
-  .figure-data-cell:hover { background: var(--surface); }
-  .figure-data-cell .val {
-    font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
-    letter-spacing: -0.02em; color: var(--white); line-height: 1;
-  }
-  .figure-data-cell .lbl {
-    font-family: var(--font-body); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); margin-top: 4px;
-  }
-  .figure-detail-row {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-    background: var(--gray-border); border-bottom: 1px solid var(--gray-border);
-  }
-  @media (max-width: 768px) { .figure-detail-row { grid-template-columns: 1fr; } }
-  .figure-detail-text {
-    background: var(--black); padding: 64px var(--grid-margin);
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  @media (max-width: 768px) { .figure-detail-text { padding: 40px 20px; } }
-  .figure-detail-text .label {
-    font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light);
-    margin-bottom: 16px;
-  }
-  .figure-detail-text h3 {
-    font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.1; color: var(--white);
-    margin-bottom: 16px;
-  }
-  .figure-detail-text p {
-    font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--text-dim);
-    max-width: 480px;
-  }
-  .figure-detail-image {
-    background: var(--black); overflow: hidden;
-  }
-  .figure-detail-image img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    filter: grayscale(30%); transition: filter 0.4s ease;
-  }
-  .figure-detail-image:hover img { filter: grayscale(0%); }
-  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gray-border); border: 1px solid var(--gray-border); }
-  @media (max-width: 1024px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
-  .stat-cell {
-    background: var(--black); padding: 48px 32px; text-align: center;
-    transition: background 0.2s;
-  }
-  .stat-cell:hover { background: var(--surface); }
-  .stat-cell .num {
-    font-family: var(--font-display); font-size: 3rem; font-weight: 800;
-    letter-spacing: -0.03em; color: var(--white); line-height: 1;
-  }
-  .stat-cell .lbl {
-    font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); margin-top: 8px;
-  }
-
-  /* ── Video Grid ── */
-  .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray-border); border: 1px solid var(--gray-border); }
-  @media (max-width: 1024px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 640px) { .video-grid { grid-template-columns: 1fr; } }
-  .video-cell {
-    background: var(--black); overflow: hidden; cursor: pointer;
-    transition: background 0.2s;
-  }
-  .video-cell:hover { background: var(--surface); }
-  .video-cell video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-  .video-cell .info { padding: 20px; }
-  .video-cell .info h3 {
-    font-family: var(--font-body); font-size: 16px; font-weight: 600; color: var(--white);
-    margin-bottom: 4px;
-  }
-  .video-cell .info p {
-    font-family: var(--font-body); font-size: 14px; color: var(--gray-light);
-  }
-
-  /* ── Timeline ── */
-  .timeline { border-top: 1px solid var(--gray-border); }
-  .timeline-row {
-    display: grid; grid-template-columns: 100px 1fr; gap: 32px;
-    padding: 24px 0; border-bottom: 1px solid var(--gray-border);
-    align-items: start; transition: background 0.2s;
-  }
-  .timeline-row:hover { background: var(--surface); }
-  .timeline-row .year {
-    font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
-    letter-spacing: -0.02em; color: var(--white);
-  }
-  .timeline-row .content h4 {
-    font-family: var(--font-body); font-size: 18px; font-weight: 600; color: var(--white);
-    margin-bottom: 4px;
-  }
-  .timeline-row .content p {
-    font-family: var(--font-body); font-size: 14px; color: var(--text-dim); line-height: 1.6;
-  }
-
-  /* ── Gallery / Wallpaper Grid ── */
-  .gallery-section { border-top: 1px solid var(--gray-border); }
-  .gallery-grid {
-    display: grid; grid-template-columns: repeat(8, 1fr);
-    grid-auto-rows: 200px; gap: 1px;
-    background: var(--gray-border); border: 1px solid var(--gray-border);
-    grid-auto-flow: dense;
-  }
-  @media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
-  @media (max-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; } }
-  .gallery-card {
-    position: relative; overflow: hidden; cursor: pointer;
-    background: var(--black);
-  }
-  .gallery-card img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    filter: grayscale(30%); transition: transform 0.5s ease, filter 0.4s ease;
-  }
-  .gallery-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
-  .gallery-card .gallery-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
-    opacity: 0; transition: opacity 0.3s ease;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 20px;
-  }
-  .gallery-card:hover .gallery-overlay { opacity: 1; }
-  .gallery-card .gallery-overlay h3 {
-    font-family: var(--font-body); font-size: 14px; font-weight: 600;
-    color: var(--white); margin-bottom: 2px;
-  }
-  .gallery-card .gallery-overlay span {
-    font-family: var(--font-body); font-size: 11px; font-weight: 500;
-    letter-spacing: 0.05em; text-transform: uppercase; color: var(--gray-light);
-  }
-  .gallery-card.span-2 { grid-column: span 2; }
-  .gallery-card.span-3 { grid-column: span 3; }
-  .gallery-card.span-4 { grid-column: span 4; }
-  .gallery-card.row-2 { grid-row: span 2; }
-  .gallery-card.row-3 { grid-row: span 3; }
-
-  /* ── CTA Button ── */
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 24px; font-family: var(--font-body); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
-    transition: all 0.2s; cursor: pointer; border: none;
-  }
-  .btn-primary {
-    background: var(--white); color: var(--black);
-  }
-  .btn-primary:hover { background: var(--black); color: var(--white); outline: 1px solid var(--white); }
-  .btn-ghost {
-    background: transparent; color: var(--white); outline: 1px solid var(--white);
-  }
-  .btn-ghost:hover { background: var(--white); color: var(--black); }
-
-  /* ── Footer ── */
-  .footer {
-    padding: var(--nav-padding) var(--grid-margin); border-top: 1px solid var(--gray-border);
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: var(--font-body); font-size: 10px; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light);
-  }
-  @media (max-width: 768px) { .footer { padding: var(--nav-padding) 20px; } }
-
-  /* ── Animations ── */
-  .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <!-- Navigation -->
 <nav class="nav">
-  <a href="#" class="nav-brand">Giannis Antetokounmpo</a>
+  <a href="#" class="nav-brand">
+    <img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Bucks" class="nav-logo-mark">
+    Giannis Antetokounmpo
+  </a>
   <ul class="nav-links">
     <li><a href="#hero">Home</a></li>
     <li><a href="#profile">Profile</a></li>
@@ -384,7 +27,7 @@
   </ul>
 </nav>
 
-<!-- Hero -->
+<!-- Hero — fullscreen cinematic -->
 <section class="hero" id="hero">
   <div class="hero-bg">
     <img src="assets/wallpapers/1725239083-79e882dc1b6f011-682x1024.jpg" alt="">
@@ -443,7 +86,6 @@
       <p>Born in Athens, Greece to Nigerian immigrant parents. Sold trinkets on the streets to help his family survive. Drafted 15th overall in 2013 as a raw 18-year-old. Transformed into the most physically dominant force the NBA has ever seen.</p>
     </div>
   </div>
-  </div>
 </section>
 
 <!-- Stats -->
@@ -464,41 +106,16 @@
   </div>
 </section>
 
-<!-- Highlights -->
+<!-- Highlights — YouTube cards (JS-rendered) -->
 <section class="section" id="highlights">
   <div class="container">
     <p class="section-label">Watch & Relive</p>
     <h2 class="section-title">HIGHLIGHT<br>REEL</h2>
-    <div class="video-grid reveal">
-      <div class="video-cell" onclick="playVideo(this)">
-        <video src="assets/videos/Giannis Antetokounmpo - GREEK FREAK - Nastiest Dunks of 2024 ! [02JLHU1jxDs].mkv" preload="metadata"></video>
-        <div class="info"><h3>Nastiest Dunks of 2024</h3><p>GREEK FREAK — Most devastating slams</p></div>
-      </div>
-      <div class="video-cell" onclick="playVideo(this)">
-        <video src="assets/videos/Giannis LEGENDARY 50 PTS & 5 BLKS in MASTERFUL Close Out Performance 🤯 [wHPLeWsAQw4].webm" preload="metadata"></video>
-        <div class="info"><h3>50 PTS & 5 BLKS Masterclass</h3><p>Legendary close-out performance</p></div>
-      </div>
-      <div class="video-cell" onclick="playVideo(this)">
-        <video src="assets/videos/A Kid From Sepolia Who Became The MVP ｜ Giannis Antetokounmpo 2019 NBA MVP [7tnVGkNyfyA].webm" preload="metadata"></video>
-        <div class="info"><h3>A Kid From Sepolia</h3><p>From Athens streets to NBA MVP</p></div>
-      </div>
-      <div class="video-cell" onclick="playVideo(this)">
-        <video src="assets/videos/Giannis dunk highlights, but each slam gets more aggressive! [BxISa1iuTC4].webm" preload="metadata"></video>
-        <div class="info"><h3>Dunks Getting More Aggressive</h3><p>Each slam more powerful than the last</p></div>
-      </div>
-      <div class="video-cell" onclick="playVideo(this)">
-        <video src="assets/videos/Giannis plays but they get increasingly more freakish [ePlcXPEQw1M].webm" preload="metadata"></video>
-        <div class="info"><h3>Increasingly More Freakish</h3><p>Plays that defy physics</p></div>
-      </div>
-      <div class="video-cell" onclick="playVideo(this)">
-        <video src="assets/videos/Giannis' emotional MVP acceptance speech ｜ 2019 NBA Awards [eMnstr2t14M].webm" preload="metadata"></video>
-        <div class="info"><h3>Emotional MVP Speech</h3><p>2019 NBA Awards — heart of a champion</p></div>
-      </div>
-    </div>
+    <div class="video-grid reveal" id="videoGrid"></div>
   </div>
 </section>
 
-<!-- Career Timeline as Project List -->
+<!-- Career Timeline -->
 <section class="section" id="career">
   <div class="container">
     <p class="section-label">The Journey</p>
@@ -526,153 +143,22 @@
   </div>
 </section>
 
-<!-- Gallery / Wallpaper Grid — Dense Portfolio Style -->
+<!-- Gallery — JS-rendered from data array -->
 <section class="section gallery-section" id="gallery">
   <div class="container" style="margin-bottom:40px;">
     <p class="section-label">Wallpaper Collection</p>
     <h2 class="section-title">ALL IMAGES<br>(29)</h2>
   </div>
-  <div class="gallery-grid">
-    <div class="gallery-card span-4 row-3">
-      <img src="assets/wallpapers/1725239083-79e882dc1b6f011-682x1024.jpg" alt="Giannis Portrait">
-      <div class="gallery-overlay"><h3>Greek Freak Portrait</h3><span>Editorial · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-3">
-      <img src="assets/wallpapers/EqJAFzEXMAAeiYw.jpg" alt="Giannis Action">
-      <div class="gallery-overlay"><h3>Rise to Greatness</h3><span>Action · 2023</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/F6uUMKDXMAAzjI3.jpg" alt="Giannis Dunk">
-      <div class="gallery-overlay"><h3>Dominant Force</h3><span>Dunk · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-3">
-      <img src="assets/wallpapers/F9Y6NH2boAArd65.jpg" alt="Giannis Game">
-      <div class="gallery-overlay"><h3>Game Face</h3><span>Portrait · 2023</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/FMLPud8X0AAxiy3.jpg" alt="Giannis Intensity">
-      <div class="gallery-overlay"><h3>Intensity</h3><span>Action · 2024</span></div>
-    </div>
-    <div class="gallery-card span-4 row-3">
-      <img src="assets/wallpapers/FrNoqhbWIAEjy-2.jpg" alt="Giannis Champion">
-      <div class="gallery-overlay"><h3>Champion Mindset</h3><span>Editorial · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/G9OuevQWsAAXWp3.jpg" alt="Giannis Drive">
-      <div class="gallery-overlay"><h3>Drive to the Rim</h3><span>Action · 2023</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/GTvF_AyWQAA7Ldj.jpg" alt="Giannis Focus">
-      <div class="gallery-overlay"><h3>Focused</h3><span>Portrait · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/GZR62X8bQAErbDd.jpg" alt="Giannis Power">
-      <div class="gallery-overlay"><h3>Power Move</h3><span>Game · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/GmImGkxXAAAKYrd.jpg" alt="Giannis Signature">
-      <div class="gallery-overlay"><h3>Signature</h3><span>Celebration · 2023</span></div>
-    </div>
-    <div class="gallery-card span-3 row-2">
-      <img src="assets/wallpapers/GpeaSNeWIAAr8eQ.jpg" alt="Giannis Court">
-      <div class="gallery-overlay"><h3>Court King</h3><span>Action · 2024</span></div>
-    </div>
-    <div class="gallery-card span-3 row-2">
-      <img src="assets/wallpapers/GpeaWhaWMAE4lwx.jpg" alt="Giannis Moment">
-      <div class="gallery-overlay"><h3>Defining Moment</h3><span>Game · 2023</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HBsclDKW0AAYjUZ.jpg" alt="Giannis Bucks">
-      <div class="gallery-overlay"><h3>Bucks Pride</h3><span>Team · 2024</span></div>
-    </div>
-    <div class="gallery-card span-4 row-3">
-      <img src="assets/wallpapers/HF54nRAWcAAdNSG.jpg" alt="Giannis Legacy">
-      <div class="gallery-overlay"><h3>Building a Legacy</h3><span>Editorial · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HFpWzinXkAA1808.jpg" alt="Giannis Freak">
-      <div class="gallery-overlay"><h3>Freak Mode</h3><span>Action · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HFpWzjVWkAArkIW.jpg" alt="Giannis MVP">
-      <div class="gallery-overlay"><h3>MVP Energy</h3><span>Portrait · 2023</span></div>
-    </div>
-    <div class="gallery-card span-2 row-3">
-      <img src="assets/wallpapers/HFuvEHIX0AAPJrP.jpg" alt="Giannis Vertical">
-      <div class="gallery-overlay"><h3>Above the Rim</h3><span>Dunk · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HFvLeHzXsAAaD8O.jpg" alt="Giannis Defense">
-      <div class="gallery-overlay"><h3>Defensive Wall</h3><span>Defense · 2023</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HGZYCk6asAA3M3q.jpg" alt="Giannis Poster">
-      <div class="gallery-overlay"><h3>Posterized</h3><span>Highlight · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HInaEkOXsAAPzEz.jpg" alt="Giannis Flight">
-      <div class="gallery-overlay"><h3>Flight Time</h3><span>Action · 2024</span></div>
-    </div>
-    <div class="gallery-card span-4 row-2">
-      <img src="assets/wallpapers/HJWWVQJboAA8hrl.jpg" alt="Giannis Panoramic">
-      <div class="gallery-overlay"><h3>The Greek Freak</h3><span>Panoramic · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HJrf4t4XkAAsfcE.jpg" alt="Giannis Crowd">
-      <div class="gallery-overlay"><h3>Fan Favorite</h3><span>Moment · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HJrlyrUWcAQFOkJ.jpg" alt="Giannis Star">
-      <div class="gallery-overlay"><h3>Superstar</h3><span>Portrait · 2023</span></div>
-    </div>
-    <div class="gallery-card span-3 row-3">
-      <img src="assets/wallpapers/HJvJcfNXgAA95d0.jpg" alt="Giannis Hero">
-      <div class="gallery-overlay"><h3>Hero of Milwaukee</h3><span>Editorial · 2024</span></div>
-    </div>
-    <div class="gallery-card span-3 row-2">
-      <img src="assets/wallpapers/HKZNCkKXcAA4mO5.jpg" alt="Giannis Art">
-      <div class="gallery-overlay"><h3>Art of the Game</h3><span>Artistic · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HKa2pjvWAAAzjvZ.jpg" alt="Giannis Smile">
-      <div class="gallery-overlay"><h3>Joy of the Game</h3><span>Moment · 2023</span></div>
-    </div>
-    <div class="gallery-card span-2 row-2">
-      <img src="assets/wallpapers/HKd_oxiWIAAhdsd.jpg" alt="Giannis Lockdown">
-      <div class="gallery-overlay"><h3>Lockdown D</h3><span>Defense · 2024</span></div>
-    </div>
-    <div class="gallery-card span-2 row-3">
-      <img src="assets/wallpapers/HKeAaKXWgAAPvs1.jpg" alt="Giannis Classic">
-      <div class="gallery-overlay"><h3>Classic Form</h3><span>Action · 2024</span></div>
-    </div>
-    <div class="gallery-card span-4 row-3">
-      <img src="assets/wallpapers/HKgUYkuXoAAP0f6.jpg" alt="Giannis Final">
-      <div class="gallery-overlay"><h3>Unstoppable Force</h3><span>Editorial · 2024</span></div>
-    </div>
-  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
 </section>
 
 <!-- Footer -->
 <footer class="footer">
-  <span>Giannis Antetokounmpo #34</span>
+  <span><img src="https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg" alt="Bucks" class="footer-logo-mark"> Giannis Antetokounmpo #34</span>
   <span>Fan Tribute · Not Affiliated with NBA</span>
   <span>Template: Stitch Monolith Aesthetic</span>
 </footer>
 
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Video play
-  function playVideo(cell) {
-    const video = cell.querySelector('video');
-    if (!video) return;
-    if (video.paused) { video.controls = true; video.play(); }
-    else { video.pause(); video.controls = false; }
-  }
-</script>
+<script src="script.js" defer></script>
 </body>
 </html>
