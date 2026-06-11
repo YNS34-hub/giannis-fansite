@@ -63,7 +63,7 @@ body {
 }
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
 .hero-bg img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center right;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
   display: block; filter: grayscale(25%);
 }
 .hero-mask {
@@ -75,10 +75,10 @@ body {
   position: relative; z-index: 2;
   display: flex; align-items: flex-end;
   max-width: 1800px; margin: 0 auto;
-  min-height: 100vh; padding: 100px var(--grid-margin) 120px;
+  min-height: 100vh; padding: 100px var(--grid-margin) 40px;
 }
 @media (max-width: 768px) {
-  .hero-content { padding: 100px 20px 100px; }
+  .hero-content { padding: 100px 20px 40px; }
   .hero-mask { background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.2) 100%); }
 }
 .hero-text { max-width: 620px; }
