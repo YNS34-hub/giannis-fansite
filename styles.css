@@ -399,22 +399,23 @@ body {
   color: var(--text-muted); border: 1px solid var(--gray-border); padding: 3px 8px;
 }
 
-/* ── Gallery / Wallpaper Grid ── */
+/* ── Gallery / Wallpaper Grid (CSS Columns Masonry) ── */
 .gallery-section { border-top: 1px solid var(--gray-border); }
 .gallery-grid {
-  display: grid; grid-template-columns: repeat(8, 1fr);
-  grid-auto-rows: 200px; gap: 1px;
-  background: var(--gray-border); border: 1px solid var(--gray-border);
-  grid-auto-flow: dense;
+  columns: 4 280px;
+  column-gap: 0;
+  background: var(--black);
 }
-@media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; grid-auto-flow: row; } }
+@media (max-width: 1024px) { .gallery-grid { columns: 3 240px; } }
+@media (max-width: 768px)  { .gallery-grid { columns: 2 180px; } }
+@media (max-width: 480px)  { .gallery-grid { columns: 1; } }
 .gallery-card {
+  break-inside: avoid; margin: 0;
   position: relative; overflow: hidden; cursor: pointer;
-  background: var(--gray-dark);
+  background: var(--black);
 }
 .gallery-card img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
+  width: 100%; height: auto; display: block;
   filter: grayscale(30%); transition: transform 0.5s ease, filter 0.4s ease;
 }
 .gallery-card:hover img { transform: scale(1.05); filter: grayscale(0%); }
@@ -443,32 +444,17 @@ body {
 }
 .gallery-card .gallery-overlay .view-hd:hover { background: var(--white); color: var(--black); }
 
-.gallery-card.span-2 { grid-column: span 2; }
-.gallery-card.span-3 { grid-column: span 3; }
-.gallery-card.span-4 { grid-column: span 4; }
-.gallery-card.row-2 { grid-row: span 2; }
-.gallery-card.row-3 { grid-row: span 3; }
-@media (max-width: 640px) {
-  .gallery-card.span-2, .gallery-card.span-3, .gallery-card.span-4 { grid-column: span 1; }
-  .gallery-card.row-2, .gallery-card.row-3 { grid-row: span 1; }
-}
-
-/* ── Object Position Variants ── */
+/* Object-position no longer applies in masonry, but keep for any inline use */
 .gallery-card.pos-top img    { object-position: center 15%; }
 .gallery-card.pos-face img   { object-position: center 25%; }
-.gallery-card.pos-bottom img { object-position: center 85%; }
-.gallery-card.pos-left img   { object-position: 25% center; }
-.gallery-card.pos-right img  { object-position: 75% center; }
-.gallery-card.pos-center img { object-position: center center; }
 
 /* ── Image Fallback ── */
 .img-fallback {
-  display: flex; align-items: center; justify-content: center;
-  background: var(--surface); color: var(--text-muted);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--surface); color: var(--text-muted); min-height: 200px;
   font-family: var(--font-body); font-size: 12px; text-align: center;
-  padding: 20px; position: absolute; inset: 0;
 }
-.img-fallback::before { content: '📷'; display: block; font-size: 2rem; margin-bottom: 4px; }
+.img-fallback::before { content: '📷'; display: block; font-size: 2rem; margin-bottom: 8px; }
 
 /* ── CTA Button ── */
 .btn {
@@ -502,6 +488,6 @@ body {
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── Performance ── */
-.gallery-section { content-visibility: auto; contain-intrinsic-size: 2000px; }
+.gallery-section { content-visibility: auto; contain-intrinsic-size: 800px; }
 #highlights { content-visibility: auto; contain-intrinsic-size: 800px; }
-.gallery-card img, .video-cell .thumb-wrap img { will-change: transform; }
+.video-cell .thumb-wrap img { will-change: transform; }

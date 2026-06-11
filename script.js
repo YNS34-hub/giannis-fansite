@@ -101,10 +101,10 @@ function renderGallery() {
   const grid = document.getElementById('galleryGrid');
   if (!grid) return;
   grid.innerHTML = galleryData.map(g => `
-    <div class="gallery-card span-${g.sc} row-${g.sr} ${g.pos}">
+    <div class="gallery-card">
       <img src="assets/wallpapers/${g.file}"
            alt="${g.title}" loading="lazy" decoding="async"
-           onerror="this.parentElement.innerHTML='<div class=\\'img-fallback\\'>${g.title}<br><small>${g.cat}</small></div>'">
+           onerror="this.parentElement.innerHTML='<div class=\\'img-fallback\\'><span>${g.title}</span><small>${g.cat}</small></div>'">
       <div class="gallery-overlay">
         <h3>${g.title}</h3>
         <span>${g.cat}</span>
