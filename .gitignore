@@ -3,3 +3,4 @@ assets/videos/
 *.mkv
 *.webm
 *.mp4
+!assets/intro/*
