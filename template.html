@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIANNIS | Stats & Legacy — Cinematic Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00F0FF;
+    --cyan-container: #006970;
+    --emerald: #10B981;
+    --emerald-container: #00422B;
+    --navy-deep: #0B1326;
+    --navy-surface: #121414;
+    --navy-glass: rgba(18, 20, 20, 0.65);
+    --glass-border: rgba(255,255,255,0.1);
+    --glass-border-glow: rgba(0,240,255,0.3);
+    --text-primary: #E2E2E2;
+    --text-secondary: #B9CACB;
+    --text-muted: #849495;
+    --shadow-cyan: 0 0 30px rgba(0,240,255,0.2), 0 0 60px rgba(0,240,255,0.06);
+    --font: 'Hanken Grotesk', sans-serif;
+    --radius: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --max-width: 1280px;
+    --unit: 4px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font); background: var(--navy-deep); color: var(--text-primary);
+    line-height: 1.5; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 20%, rgba(0,240,255,0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 70% 60%, rgba(16,185,129,0.04) 0%, transparent 70%);
+  }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+  @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+  /* Nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(11, 19, 38, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .nav-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .nav-logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-primary); text-decoration: none; }
+  .nav-logo span { color: var(--cyan); }
+
+  /* Template badge */
+  .template-badge {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+    background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.25);
+    border-radius: var(--radius); font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.05em; text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 24px;
+  }
+  .template-badge::before { content: '◆'; font-size: 0.5rem; }
+
+  /* Hero */
+  .hero { min-height: 80vh; display: flex; align-items: center; padding: 120px 0 60px; }
+  .hero-content { max-width: 720px; }
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 20px;
+  }
+  .hero-title .accent { color: var(--cyan); }
+  .hero-desc { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 32px; max-width: 560px; }
+  .hero-meta { display: flex; gap: 40px; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-num { font-size: 2rem; font-weight: 800; color: var(--cyan); letter-spacing: -0.03em; }
+  .hero-meta-label { font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+
+  /* Section */
+  .section { padding: 80px 0; }
+  .section-header { margin-bottom: 48px; }
+  .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; }
+  .section-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+
+  /* Glass Cards */
+  .glass-card {
+    background: var(--navy-glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+    padding: 24px; transition: all 0.3s ease;
+  }
+  .glass-card:hover { border-color: var(--glass-border-glow); box-shadow: var(--shadow-cyan); transform: translateY(-3px); }
+
+  /* Stats Grid */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+  .stat-block { text-align: center; padding: 28px 16px; }
+  .stat-block .number { font-size: 2.25rem; font-weight: 800; color: var(--cyan); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .stat-block .unit { font-size: 0.875rem; color: var(--text-secondary); }
+  .stat-block .desc { font-size: 0.6875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 6px; }
+
+  /* Achievement Cards */
+  .achievements { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .achieve-card { padding: 32px 24px; position: relative; overflow: hidden; }
+  .achieve-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--cyan), var(--emerald));
+  }
+  .achieve-year { font-size: 0.75rem; font-weight: 500; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; }
+  .achieve-title { font-size: 1.25rem; font-weight: 800; margin: 8px 0; }
+  .achieve-desc { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Progress Bars */
+  .skill-bar { margin-bottom: 20px; }
+  .skill-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.8125rem; font-weight: 500; }
+  .skill-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; border-radius: 4px; position: relative;
+    background: linear-gradient(90deg, var(--cyan), var(--emerald));
+    box-shadow: 0 0 10px rgba(0,240,255,0.3);
+    transition: width 1.5s ease;
+  }
+
+  /* Comparison */
+  .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 768px) { .comparison-grid { grid-template-columns: 1fr; } }
+  .compare-card { padding: 28px; }
+  .compare-card h3 { font-weight: 700; margin-bottom: 12px; font-size: 1.125rem; }
+  .compare-card.original { border-top: 2px solid var(--emerald); }
+  .compare-card.template { border-top: 2px solid var(--cyan); }
+  .compare-list { list-style: none; }
+  .compare-list li { padding: 6px 0; font-size: 0.8125rem; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+  .compare-list li::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
+  .compare-card.original .compare-list li::before { background: var(--emerald); }
+  .compare-card.template .compare-list li::before { background: var(--cyan); }
+
+  /* Footer */
+  .footer { border-top: 1px solid var(--glass-border); padding: 32px 0; text-align: center; font-size: 0.75rem; color: var(--text-muted); }
+  .footer strong { color: var(--cyan); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">GIANNIS<span>.</span> — Template Edition</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="template-badge">Cinematic Fan Experience Template</div>
+      <h1 class="hero-title">THE <span class="accent">LEGACY</span><br>OF GREATNESS</h1>
+      <p class="hero-desc">
+        From selling trinkets on the streets of Athens to becoming one of the greatest power forwards in NBA history. This is the data-driven story of Giannis Antetokounmpo.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><div class="hero-meta-num">2x</div><div class="hero-meta-label">MVP</div></div>
+        <div class="hero-meta-item"><div class="hero-meta-num">1x</div><div class="hero-meta-label">Champion</div></div>
+        <div class="hero-meta-item"><div class="hero-meta-num">8x</div><div class="hero-meta-label">All-Star</div></div>
+        <div class="hero-meta-item"><div class="hero-meta-num">1x</div><div class="hero-meta-label">DPOY</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Season Stats -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Career Averages</p>
+      <h2 class="section-title">PERFORMANCE METRICS</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="glass-card stat-block"><div class="number">23.4</div><div class="desc">Points</div><div class="unit">Per Game</div></div>
+      <div class="glass-card stat-block"><div class="number">9.8</div><div class="desc">Rebounds</div><div class="unit">Per Game</div></div>
+      <div class="glass-card stat-block"><div class="number">4.9</div><div class="desc">Assists</div><div class="unit">Per Game</div></div>
+      <div class="glass-card stat-block"><div class="number">1.3</div><div class="desc">Blocks</div><div class="unit">Per Game</div></div>
+      <div class="glass-card stat-block"><div class="number">1.1</div><div class="desc">Steals</div><div class="unit">Per Game</div></div>
+      <div class="glass-card stat-block"><div class="number">54.5</div><div class="desc">FG%</div><div class="unit">Efficiency</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Skill Bars -->
+<section class="section" style="background: rgba(0,240,255,0.015);">
+  <div class="container" style="max-width: 700px;">
+    <div class="section-header">
+      <p class="section-label">Scouting Report</p>
+      <h2 class="section-title">PLAYER ATTRIBUTES</h2>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-label"><span>Finishing at the Rim</span><span style="color:var(--cyan);">99</span></div>
+      <div class="skill-track"><div class="skill-fill" style="width:99%;"></div></div>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-label"><span>Transition Offense</span><span style="color:var(--cyan);">98</span></div>
+      <div class="skill-track"><div class="skill-fill" style="width:98%;"></div></div>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-label"><span>Defensive Versatility</span><span style="color:var(--cyan);">96</span></div>
+      <div class="skill-track"><div class="skill-fill" style="width:96%;"></div></div>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-label"><span>Playmaking</span><span style="color:var(--cyan);">88</span></div>
+      <div class="skill-track"><div class="skill-fill" style="width:88%;"></div></div>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-label"><span>Mid-Range Shooting</span><span style="color:var(--cyan);">72</span></div>
+      <div class="skill-track"><div class="skill-fill" style="width:72%;"></div></div>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-label"><span>Three-Point Shooting</span><span style="color:var(--cyan);">58</span></div>
+      <div class="skill-track"><div class="skill-fill" style="width:58%;"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Achievements -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Honors & Awards</p>
+      <h2 class="section-title">CAREER ACHIEVEMENTS</h2>
+    </div>
+    <div class="achievements">
+      <div class="glass-card achieve-card">
+        <div class="achieve-year">2013</div>
+        <div class="achieve-title">NBA Draft #15</div>
+        <div class="achieve-desc">Milwaukee Bucks select 18-year-old Giannis from Filathlitikos, Greece. The beginning of an era.</div>
+      </div>
+      <div class="glass-card achieve-card">
+        <div class="achieve-year">2017</div>
+        <div class="achieve-title">Most Improved Player</div>
+        <div class="achieve-desc">Breakout season averaging 22.9 PPG. First major award. The league takes notice.</div>
+      </div>
+      <div class="glass-card achieve-card">
+        <div class="achieve-year">2019</div>
+        <div class="achieve-title">NBA Most Valuable Player</div>
+        <div class="achieve-desc">27.7 PPG, 12.5 RPG, 5.9 APG. Led Bucks to 60 wins. Emotional acceptance speech.</div>
+      </div>
+      <div class="glass-card achieve-card">
+        <div class="achieve-year">2020</div>
+        <div class="achieve-title">MVP + DPOY</div>
+        <div class="achieve-desc">Joins Jordan & Olajuwon — only players to win MVP and Defensive POY in same season.</div>
+      </div>
+      <div class="glass-card achieve-card">
+        <div class="achieve-year">2021</div>
+        <div class="achieve-title">NBA Champion & Finals MVP</div>
+        <div class="achieve-desc">50 PTS, 14 REB, 5 BLK in Game 6. Bucks' first title in 50 years. Immortality.</div>
+      </div>
+      <div class="glass-card achieve-card">
+        <div class="achieve-year">2024</div>
+        <div class="achieve-title">NBA Cup Champion</div>
+        <div class="achieve-desc">Led Bucks to inaugural NBA Cup title with dominant tournament performance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Design Comparison -->
+<section class="section" style="background: rgba(16,185,129,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Design Systems</p>
+      <h2 class="section-title">ORIGINAL vs TEMPLATE</h2>
+    </div>
+    <div class="comparison-grid">
+      <div class="glass-card compare-card original">
+        <h3 style="color:var(--emerald);">◆ Original — Greek Freak Cinematic</h3>
+        <ul class="compare-list">
+          <li>Primary: Emerald Green #10B981</li>
+          <li>Accent: Cyan #00F0FF</li>
+          <li>Fonts: Hanken Grotesk + Inter + Geist</li>
+          <li>Spacing: 8px unit, 64px margins</li>
+          <li>Container: 1440px max-width</li>
+          <li>Roundness: 8px (ROUND_EIGHT)</li>
+          <li>Style: Broadcast sports with neon glows</li>
+          <li>Split hero layout + video showcase</li>
+        </ul>
+      </div>
+      <div class="glass-card compare-card template">
+        <h3 style="color:var(--cyan);">◆ Template — Cinematic Fan Experience</h3>
+        <ul class="compare-list">
+          <li>Primary: Cyan #00F0FF</li>
+          <li>Accent: Emerald Green #10B981</li>
+          <li>Fonts: Hanken Grotesk (exclusively)</li>
+          <li>Spacing: 4px unit, 80px margins</li>
+          <li>Container: 1280px max-width</li>
+          <li>Roundness: 8px (ROUND_EIGHT)</li>
+          <li>Style: Command center / instrument panel</li>
+          <li>Stats-focused with progress bars</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>GIANNIS ANTETOKOUNMPO <strong>#34</strong> — Template Edition</p>
+    <p style="margin-top:4px;">Powered by Stitch "Cinematic Fan Experience" Design System • Fan tribute</p>
+  </div>
+</footer>
+
+<script>
+  // Animate skill bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.style.width; }, i * 80);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
