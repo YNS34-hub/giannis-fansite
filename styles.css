@@ -107,12 +107,12 @@ body {
   padding-top: var(--element-gap); border-top: 1px solid var(--gray-border);
 }
 .hero-meta-item .num {
-  font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800;
+  font-family: var(--font-display); font-size: 2rem; font-weight: 800;
   letter-spacing: -0.03em; color: var(--white); line-height: 1;
 }
 .hero-meta-item .lbl {
-  font-family: var(--font-body); font-size: 13px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); margin-top: 6px;
+  font-family: var(--font-display); font-size: clamp(1rem, 1.5vw, 1.25rem); font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); margin-top: 6px;
 }
 
 /* ── Section ── */
@@ -290,21 +290,21 @@ body {
 .story-card:last-child .story-line { display: none; }
 .story-card:hover .story-line { background: var(--gray-mid); }
 
-/* Story Body — desktop: 编号80 / 文字1fr / 图片320 */
+/* Story Body — desktop: 编号90 / 文字minmax(360,560) / 图片minmax(420,560) */
 .story-body {
-  flex: 1; display: grid; grid-template-columns: 80px 1fr 320px;
-  gap: 32px; padding: 56px 64px 56px 12px; align-items: start;
+  flex: 1; display: grid; grid-template-columns: 90px minmax(360px, 560px) minmax(420px, 560px);
+  gap: 36px; padding: 56px 64px 56px 12px; align-items: start;
 }
-@media (max-width: 1100px) {
+@media (max-width: 1300px) {
   .story-body { gap: 24px; padding: 48px 40px 48px 8px; }
 }
-@media (max-width: 900px) {
-  .story-body { grid-template-columns: 50px 1fr; gap: 20px; padding: 28px 20px 28px 4px; }
-  .story-thumb { width: 100%; height: 220px; grid-column: 1 / -1; }
+@media (max-width: 1100px) {
+  .story-body { grid-template-columns: 50px 1fr; gap: 20px; padding: 32px 24px 32px 4px; }
+  .story-num { text-align: left; }
+  .story-thumb { width: 100%; height: auto; aspect-ratio: 16 / 9; grid-column: 1 / -1; margin-top: 16px; }
 }
 @media (max-width: 640px) {
   .story-body { grid-template-columns: 36px 1fr; gap: 14px; padding: 28px 20px 28px 4px; }
-  .story-thumb { height: 200px; }
 }
 
 .story-num {
@@ -316,12 +316,12 @@ body {
 .story-card:hover .story-num { color: var(--white); }
 
 .story-content h4 {
-  font-family: var(--font-body); font-size: clamp(1.625rem, 3vw, 2rem); font-weight: 600;
+  font-family: var(--font-body); font-size: clamp(1.5rem, 2vw, 1.75rem); font-weight: 600;
   color: var(--white); margin-bottom: 10px; letter-spacing: -0.01em;
 }
 .story-content p {
-  font-family: var(--font-body); font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); line-height: 1.65;
-  color: var(--text-dim); max-width: 620px;
+  font-family: var(--font-body); font-size: clamp(1.125rem, 1.35vw, 1.5rem); line-height: 1.55;
+  color: var(--text-dim); max-width: 560px;
 }
 
 /* Story Tags */
@@ -336,15 +336,16 @@ body {
   border-color: rgba(255,255,255,0.4); color: var(--text-dim);
 }
 
-/* Story Thumbnail */
+/* Story Thumbnail — default contain */
 .story-thumb {
-  width: 320px; height: 200px; object-fit: cover; display: block;
-  filter: grayscale(30%); transition: filter 0.4s ease, transform 0.4s ease;
+  width: 100%; height: clamp(220px, 24vw, 360px); object-fit: contain;
+  object-position: center center; background: #000;
+  display: block; transition: transform 0.4s ease;
   border: 1px solid var(--gray-border);
 }
-.story-card:hover .story-thumb {
-  filter: grayscale(0%); transform: scale(1.05);
-}
+.story-card:hover .story-thumb { transform: scale(1.03); }
+.story-thumb.is-cover { object-fit: cover; }
+.story-thumb.is-contain { object-fit: contain; }
 
 /* ── Playing Identity ── */
 .playing-identity {
