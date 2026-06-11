@@ -114,6 +114,15 @@ body {
   font-family: var(--font-body); font-size: 13px; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-light); margin-top: 6px;
 }
+.hero-award-icon {
+  display: block; width: 44px; height: 44px; object-fit: contain;
+  margin: 0 auto 10px;
+  filter: brightness(1.3) contrast(1.1);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.hero-meta-item:hover .hero-award-icon {
+  transform: scale(1.15); filter: brightness(1.6) contrast(1.2);
+}
 
 /* ── Section ── */
 .section { padding: var(--section-gap) 0; }
