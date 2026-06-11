@@ -263,21 +263,22 @@ body {
   display: flex; flex-direction: column; position: relative; z-index: 1;
 }
 .story-card {
-  flex: 1; display: flex; gap: 0; background: var(--black);
+  display: flex; gap: 0; background: var(--black);
   border-bottom: 1px solid var(--gray-border);
-  transition: background 0.25s; position: relative;
+  border-left: 1px solid transparent;
+  transition: background 0.25s, border-color 0.3s; position: relative;
 }
 .story-card:last-child { border-bottom: none; }
-.story-card:hover { background: var(--surface); }
+.story-card:hover { background: var(--surface); border-left-color: var(--gray-border); }
 
 /* Timeline */
 .story-timeline {
-  width: 32px; flex-shrink: 0; position: relative;
+  width: 40px; flex-shrink: 0; position: relative;
   display: flex; flex-direction: column; align-items: center;
-  padding-top: 28px;
+  padding-top: 64px;
 }
 .story-dot {
-  width: 8px; height: 8px; flex-shrink: 0;
+  width: 10px; height: 10px; flex-shrink: 0;
   background: var(--gray-mid); transition: background 0.25s;
   z-index: 1;
 }
@@ -289,55 +290,60 @@ body {
 .story-card:last-child .story-line { display: none; }
 .story-card:hover .story-line { background: var(--gray-mid); }
 
-/* Story Body */
+/* Story Body — desktop: 编号80 / 文字1fr / 图片320 */
 .story-body {
-  flex: 1; display: grid; grid-template-columns: 60px 1fr 180px;
-  gap: 20px; padding: 28px 32px 28px 8px; align-items: flex-start;
+  flex: 1; display: grid; grid-template-columns: 80px 1fr 320px;
+  gap: 32px; padding: 56px 64px 56px 12px; align-items: start;
+}
+@media (max-width: 1100px) {
+  .story-body { gap: 24px; padding: 48px 40px 48px 8px; }
 }
 @media (max-width: 900px) {
-  .story-body { grid-template-columns: 50px 1fr; }
-  .story-thumb { display: none; }
+  .story-body { grid-template-columns: 50px 1fr; gap: 20px; padding: 28px 20px 28px 4px; }
+  .story-thumb { width: 100%; height: 220px; grid-column: 1 / -1; }
 }
 @media (max-width: 640px) {
-  .story-body { grid-template-columns: 36px 1fr; gap: 12px; padding: 20px 16px 20px 4px; }
+  .story-body { grid-template-columns: 36px 1fr; gap: 14px; padding: 28px 20px 28px 4px; }
+  .story-thumb { height: 200px; }
 }
 
 .story-num {
-  font-family: var(--font-display); font-size: 2.5rem; font-weight: 800;
+  font-family: var(--font-display); font-size: 3.5rem; font-weight: 800;
   letter-spacing: -0.03em; color: var(--gray-mid); line-height: 1;
-  transition: color 0.25s; text-align: right;
+  transition: color 0.25s; text-align: right; align-self: start;
+  padding-top: 4px;
 }
 .story-card:hover .story-num { color: var(--white); }
 
 .story-content h4 {
-  font-family: var(--font-body); font-size: 16px; font-weight: 600;
-  color: var(--white); margin-bottom: 6px; letter-spacing: -0.01em;
+  font-family: var(--font-body); font-size: clamp(1.625rem, 3vw, 2rem); font-weight: 600;
+  color: var(--white); margin-bottom: 10px; letter-spacing: -0.01em;
 }
 .story-content p {
-  font-family: var(--font-body); font-size: 14px; line-height: 1.65;
-  color: var(--text-dim); max-width: 480px;
+  font-family: var(--font-body); font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); line-height: 1.65;
+  color: var(--text-dim); max-width: 620px;
 }
 
 /* Story Tags */
-.story-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.story-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
 .story-tag {
-  font-family: var(--font-body); font-size: 9px; font-weight: 600;
+  font-family: var(--font-body); font-size: 10px; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--gray-light); border: 1px solid var(--gray-mid);
-  padding: 4px 10px; transition: all 0.2s;
+  color: var(--gray-light); border: 1px solid rgba(255,255,255,0.2);
+  padding: 6px 14px; transition: all 0.2s;
 }
 .story-card:hover .story-tag {
-  border-color: var(--gray-light); color: var(--text-dim);
+  border-color: rgba(255,255,255,0.4); color: var(--text-dim);
 }
 
 /* Story Thumbnail */
 .story-thumb {
-  width: 180px; height: 120px; object-fit: cover; display: block;
+  width: 320px; height: 200px; object-fit: cover; display: block;
   filter: grayscale(30%); transition: filter 0.4s ease, transform 0.4s ease;
   border: 1px solid var(--gray-border);
 }
 .story-card:hover .story-thumb {
-  filter: grayscale(0%); transform: scale(1.03);
+  filter: grayscale(0%); transform: scale(1.05);
 }
 
 /* ── Playing Identity ── */
