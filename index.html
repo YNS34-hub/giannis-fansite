@@ -20,9 +20,9 @@
   <ul class="nav-links">
     <li><a href="#hero">Home</a></li>
     <li><a href="#profile">Profile</a></li>
-    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#dna">DNA</a></li>
     <li><a href="#stats">Stats</a></li>
-    <li><a href="#career">Career</a></li>
+    <li><a href="#highlights">Highlights</a></li>
     <li><a href="#gallery">Gallery</a></li>
   </ul>
 </nav>
@@ -56,6 +56,17 @@
         <a href="#career" class="btn btn-ghost">Career Timeline</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     THEME STATEMENT
+     ═══════════════════════════════════════════════════════ -->
+<section class="theme-statement">
+  <div class="theme-lines">
+    <div class="theme-line reveal">BUILT FROM NOTHING.</div>
+    <div class="theme-line reveal outline">BUILT DIFFERENT.</div>
+    <div class="theme-line reveal">BUILT FOR MILWAUKEE.</div>
   </div>
 </section>
 
@@ -211,21 +222,55 @@
 
 </section>
 
+<!-- ═══════════════════════════════════════════════════════
+     GREEK FREAK DNA
+     ═══════════════════════════════════════════════════════ -->
+<section class="section dna-section" id="dna">
+  <div class="container">
+    <p class="section-label">Physical Profile</p>
+    <h2 class="section-title">THE GREEK<br>FREAK DNA</h2>
+    <div class="dna-grid reveal">
+      <div class="dna-card">
+        <span class="dna-num">01</span>
+        <h4>LENGTH</h4>
+        <p>7′3″ wingspan. Covers space like few players in NBA history. Defensive range that breaks schemes.</p>
+      </div>
+      <div class="dna-card">
+        <span class="dna-num">02</span>
+        <h4>POWER</h4>
+        <p>Downhill force. Contact finisher. Paint destroyer. Generates more points in the restricted area than any forward.</p>
+      </div>
+      <div class="dna-card">
+        <span class="dna-num">03</span>
+        <h4>SPEED</h4>
+        <p>A near seven-footer who runs the floor like a guard. Coast-to-coast in three dribbles. Transition devastation.</p>
+      </div>
+      <div class="dna-card">
+        <span class="dna-num">04</span>
+        <h4>MOTOR</h4>
+        <p>Relentless pressure on both ends. Never takes a possession off. From Sepolia's streets to the NBA mountaintop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Stats -->
-<section class="section" id="stats">
+<section class="section stats-section" id="stats">
   <div class="container">
     <p class="section-label">By The Numbers</p>
     <h2 class="section-title">CAREER<br>STATISTICS</h2>
+    <p class="stats-intro">A rare profile: primary scorer, elite rebounder, transition engine, and defensive anchor. Few players in NBA history have posted this combination of volume, efficiency, and versatility.</p>
     <div class="stats-grid reveal">
-      <div class="stat-cell"><div class="num">23.4</div><div class="lbl">Points Per Game</div></div>
-      <div class="stat-cell"><div class="num">9.8</div><div class="lbl">Rebounds Per Game</div></div>
-      <div class="stat-cell"><div class="num">4.9</div><div class="lbl">Assists Per Game</div></div>
-      <div class="stat-cell"><div class="num">1.3</div><div class="lbl">Blocks Per Game</div></div>
-      <div class="stat-cell"><div class="num">1.1</div><div class="lbl">Steals Per Game</div></div>
-      <div class="stat-cell"><div class="num">54.5%</div><div class="lbl">Field Goal</div></div>
-      <div class="stat-cell"><div class="num">792</div><div class="lbl">Games Played</div></div>
-      <div class="stat-cell"><div class="num">18,502+</div><div class="lbl">Career Points</div></div>
+      <div class="stat-cell"><div class="num" data-target="23.4">0</div><div class="lbl">Points Per Game</div><div class="bar"><span style="width:78%"></span></div></div>
+      <div class="stat-cell"><div class="num" data-target="9.8">0</div><div class="lbl">Rebounds Per Game</div><div class="bar"><span style="width:65%"></span></div></div>
+      <div class="stat-cell"><div class="num" data-target="4.9">0</div><div class="lbl">Assists Per Game</div><div class="bar"><span style="width:49%"></span></div></div>
+      <div class="stat-cell"><div class="num" data-target="1.3">0</div><div class="lbl">Blocks Per Game</div><div class="bar"><span style="width:43%"></span></div></div>
+      <div class="stat-cell"><div class="num" data-target="1.1">0</div><div class="lbl">Steals Per Game</div><div class="bar"><span style="width:37%"></span></div></div>
+      <div class="stat-cell"><div class="num" data-target="54.5%">0</div><div class="lbl">Field Goal %</div><div class="bar"><span style="width:91%"></span></div></div>
+      <div class="stat-cell"><div class="num" data-target="792">0</div><div class="lbl">Games Played</div><div class="bar"><span style="width:85%"></span></div></div>
+      <div class="stat-cell"><div class="num" data-target="18502">0</div><div class="lbl">Career Points</div><div class="bar"><span style="width:92%"></span></div></div>
     </div>
+    <p class="stats-source">Career stats reference: NBA.com / ESPN / Basketball Reference</p>
   </div>
 </section>
 
@@ -269,10 +314,33 @@
 <!-- Gallery — JS-rendered from data array -->
 <section class="section gallery-section" id="gallery">
   <div class="container" style="margin-bottom:40px;">
-    <p class="section-label">Wallpaper Collection</p>
-    <h2 class="section-title">ALL IMAGES<br>(29)</h2>
+    <p class="section-label">Wallpaper Archive</p>
+    <h2 class="section-title">29 HIGH-RES MOMENTS<br>OF THE GREEK FREAK</h2>
+    <div class="gallery-filters reveal">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="portrait">PORTRAIT</button>
+      <button class="filter-btn" data-filter="action">ACTION</button>
+      <button class="filter-btn" data-filter="championship">CHAMPIONSHIP</button>
+      <button class="filter-btn" data-filter="bucks">BUCKS</button>
+      <button class="filter-btn" data-filter="phone">PHONE</button>
+      <button class="filter-btn" data-filter="desktop">DESKTOP</button>
+    </div>
   </div>
   <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     FINAL LEGACY
+     ═══════════════════════════════════════════════════════ -->
+<section class="final-legacy">
+  <div class="legacy-content">
+    <h2 class="legacy-title">LEGACY IS STILL<br>BEING WRITTEN.</h2>
+    <p class="legacy-sub">From Athens to Milwaukee. From unknown prospect to champion.<br>The story continues.</p>
+    <div class="legacy-btns">
+      <a href="#highlights" class="btn btn-primary">Watch Highlights ↗</a>
+      <a href="#gallery" class="btn btn-ghost">Explore Gallery</a>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
