@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Giannis Antetokounmpo — Highlights, Gallery & Career | The Greek Freak</title>
-<meta name="description" content="Watch Giannis Antetokounmpo highlight reels, explore career milestones, and browse a gallery of high-resolution wallpapers of the Greek Freak.">
+<title>Giannis Antetokounmpo — Highlights & Gallery | The Greek Freak</title>
+<meta name="description" content="Watch Giannis Antetokounmpo highlight reels, explore the career timeline, and browse a curated gallery of high-resolution wallpapers.">
 <link rel="canonical" href="https://yns34-hub.github.io/giannis-fansite/media.html">
-<meta property="og:title" content="Giannis Antetokounmpo — Highlights, Gallery & Career | The Greek Freak">
-<meta property="og:description" content="Watch Giannis Antetokounmpo highlight reels, explore career milestones, and browse a gallery of high-resolution wallpapers of the Greek Freak.">
+<meta property="og:title" content="Giannis Antetokounmpo — Highlights & Gallery | The Greek Freak">
+<meta property="og:description" content="Watch Giannis Antetokounmpo highlight reels, explore the career timeline, and browse a curated gallery.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://yns34-hub.github.io/giannis-fansite/assets/wallpapers/EqJAFzEXMAAeiYw.jpg">
 <meta property="og:url" content="https://yns34-hub.github.io/giannis-fansite/media.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Giannis Antetokounmpo — Highlights, Gallery & Career | The Greek Freak">
-<meta name="twitter:description" content="Watch Giannis Antetokounmpo highlight reels, explore career milestones, and browse a gallery of high-resolution wallpapers of the Greek Freak.">
+<meta name="twitter:title" content="Giannis Antetokounmpo — Highlights & Gallery | The Greek Freak">
+<meta name="twitter:description" content="Watch Giannis Antetokounmpo highlight reels, explore the career timeline, and browse a curated gallery.">
 <meta name="twitter:image" content="https://yns34-hub.github.io/giannis-fansite/assets/wallpapers/EqJAFzEXMAAeiYw.jpg">
 <link rel="icon" type="image/png" href="assets/logo/giannis-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,72 +26,100 @@
 <a href="#highlights" class="skip-link">Skip to content</a>
 
 <!-- Navigation -->
-<nav class="nav">
+<nav class="nav" role="navigation" aria-label="Main navigation">
   <a href="index.html" class="nav-brand">
-    <img src="assets/logo/giannis-logo.png" alt="Giannis" class="nav-logo-mark giannis-logo">
+    <img src="assets/logo/giannis-logo.png" alt="Giannis Antetokounmpo logo" class="nav-logo-mark giannis-logo" width="24" height="24">
     Giannis Antetokounmpo
   </a>
   <ul class="nav-links">
     <li><a href="index.html"><span aria-hidden="true">←</span> Story</a></li>
     <li><a href="#highlights">Highlights</a></li>
-    <li><a href="#career">Career</a></li>
+    <li><a href="#milestones">Milestones</a></li>
     <li><a href="#gallery">Gallery</a></li>
   </ul>
 </nav>
 
-<!-- Highlights — YouTube cards (JS-rendered) -->
-<section class="section" id="highlights">
+<main>
+<!-- ═══════════════════════════════════════════════════════
+     MEDIA HERO
+     ═══════════════════════════════════════════════════════ -->
+<section class="section" style="padding-top:calc(var(--nav-height) + 60px); border-bottom:1px solid var(--border);">
   <div class="container">
-    <p class="section-label">Watch & Relive</p>
-    <h2 class="section-title">HIGHLIGHT<br>REEL</h2>
+    <span class="section-tag">Watch &amp; Relive</span>
+    <h1 class="section-heading">Highlights<br>&amp; Gallery</h1>
+    <p class="section-lede">
+      Immerse yourself in the most dominant performances, career-defining moments, and a
+      curated archive of high-resolution photography capturing the Greek Freak's journey.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     HIGHLIGHT REEL — YouTube Video Cards
+     ═══════════════════════════════════════════════════════ -->
+<section class="section" id="highlights" aria-labelledby="highlights-heading">
+  <div class="container">
+    <span class="section-tag">Watch &amp; Relive</span>
+    <h2 class="section-heading" id="highlights-heading">Highlight<br>Reel</h2>
     <div class="video-grid reveal" id="videoGrid"></div>
   </div>
 </section>
 
-<!-- Career Timeline -->
-<section class="section" id="career">
+<!-- ═══════════════════════════════════════════════════════
+     CAREER MILESTONES
+     ═══════════════════════════════════════════════════════ -->
+<section class="section" id="milestones" aria-labelledby="milestones-heading">
   <div class="container">
-    <p class="section-label">The Journey</p>
-    <h2 class="section-title">CAREER<br>MILESTONES</h2>
-    <div class="col-header">
-      <span>Milestone</span><span>Award</span><span>Details</span><span>Year</span>
-    </div>
-    <div class="project-list">
-      <div class="project-row">
-        <div class="name">NBA Draft</div><div class="meta">15th Pick</div><div class="meta">Milwaukee Bucks select 18-year-old from Greece</div><div class="year">2013</div>
+    <span class="section-tag">The Journey</span>
+    <h2 class="section-heading" id="milestones-heading">Career<br>Milestones</h2>
+
+    <div class="milestones-table">
+      <div class="milestone-row header">
+        <span>Milestone</span><span>Award</span><span>Details</span><span>Year</span>
       </div>
-      <div class="project-row">
-        <div class="name">Most Improved Player</div><div class="meta">MIP</div><div class="meta">Breakout season: 22.9 PPG on 52.1% shooting</div><div class="year">2017</div>
+      <div class="milestone-row">
+        <div class="name">NBA Draft</div><div class="award">15th Pick</div><div class="detail">Milwaukee Bucks select 18-year-old from Greece</div><div class="year">2013</div>
       </div>
-      <div class="project-row">
-        <div class="name">First NBA MVP</div><div class="meta">MVP</div><div class="meta">27.7 PPG, 12.5 RPG, 5.9 APG. Bucks 60 wins.</div><div class="year">2019</div>
+      <div class="milestone-row">
+        <div class="name">Most Improved Player</div><div class="award">MIP</div><div class="detail">22.9 PPG on 52.1% shooting — breakout season</div><div class="year">2017</div>
       </div>
-      <div class="project-row">
-        <div class="name">MVP + DPOY</div><div class="meta">MVP, DPOY</div><div class="meta">Joins Jordan & Olajuwon — both awards same season</div><div class="year">2020</div>
+      <div class="milestone-row">
+        <div class="name">First NBA MVP</div><div class="award">MVP</div><div class="detail">27.7 PPG · 12.5 RPG · 5.9 APG · 60 wins</div><div class="year">2019</div>
       </div>
-      <div class="project-row">
-        <div class="name">NBA Champion & Finals MVP</div><div class="meta">Champion, FMVP</div><div class="meta">50 PTS, 14 REB, 5 BLK in Game 6. First title in 50 years.</div><div class="year">2021</div>
+      <div class="milestone-row">
+        <div class="name">MVP + Defensive Player of the Year</div><div class="award">MVP, DPOY</div><div class="detail">Joins Jordan &amp; Olajuwon — both awards same season</div><div class="year">2020</div>
+      </div>
+      <div class="milestone-row">
+        <div class="name">NBA Champion &amp; Finals MVP</div><div class="award">Champion, FMVP</div><div class="detail">50 PTS · 14 REB · 5 BLK in close-out Game 6</div><div class="year">2021</div>
+      </div>
+      <div class="milestone-row">
+        <div class="name">NBA Cup Champion &amp; Cup MVP</div><div class="award">NBA Cup, Cup MVP</div><div class="detail">Led Bucks to inaugural NBA Cup title</div><div class="year">2024</div>
+      </div>
+      <div class="milestone-row">
+        <div class="name">10× All-Star · Career Milestone</div><div class="award">10× All-Star</div><div class="detail">9× All-NBA · 5× All-Defensive · Sustained greatness</div><div class="year">2026</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Gallery — JS-rendered from data array -->
-<section class="section gallery-section" id="gallery">
+<!-- ═══════════════════════════════════════════════════════
+     WALLPAPER GALLERY
+     ═══════════════════════════════════════════════════════ -->
+<section class="section gallery-section" id="gallery" aria-labelledby="gallery-heading">
   <div class="container" style="margin-bottom:40px;">
-    <p class="section-label">Wallpaper Archive</p>
-    <h2 class="section-title">HIGH-RES MOMENTS<br>OF THE GREEK FREAK</h2>
+    <span class="section-tag">Wallpaper Archive</span>
+    <h2 class="section-heading" id="gallery-heading">High-Res<br>Moments</h2>
     <div class="gallery-filters reveal">
-      <button class="filter-btn active" data-filter="all">ALL</button>
-      <button class="filter-btn" data-filter="portrait">PORTRAIT</button>
-      <button class="filter-btn" data-filter="action">ACTION</button>
-      <button class="filter-btn" data-filter="championship">CHAMPIONSHIP</button>
-      <button class="filter-btn" data-filter="bucks">BUCKS</button>
-      <button class="filter-btn" data-filter="phone">PHONE</button>
-      <button class="filter-btn" data-filter="desktop">DESKTOP</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="portrait">Portrait</button>
+      <button class="filter-btn" data-filter="action">Action</button>
+      <button class="filter-btn" data-filter="championship">Championship</button>
+      <button class="filter-btn" data-filter="bucks">Bucks</button>
+      <button class="filter-btn" data-filter="phone">Phone</button>
+      <button class="filter-btn" data-filter="desktop">Desktop</button>
     </div>
   </div>
-  <div class="gallery-grid" id="galleryGrid"></div>
+  <div class="gallery-grid reveal" id="galleryGrid"></div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -99,21 +127,35 @@
      ═══════════════════════════════════════════════════════ -->
 <section class="final-legacy">
   <div class="legacy-content">
-    <h2 class="legacy-title">LEGACY IS STILL<br>BEING WRITTEN.</h2>
-    <p class="legacy-sub">From Athens to Milwaukee. From unknown prospect to champion.<br>The story continues.</p>
+    <h2 class="legacy-title">Legacy Is Still<br>Being Written.</h2>
+    <p class="legacy-sub">From Athens to Milwaukee. From unknown prospect to global icon.<br>The story continues.</p>
     <div class="legacy-btns">
       <a href="index.html" class="btn btn-primary"><span aria-hidden="true">←</span> Back to Story</a>
       <a href="#gallery" class="btn btn-ghost">Explore Gallery</a>
     </div>
   </div>
 </section>
+</main>
 
 <!-- Footer -->
-<footer class="footer">
-  <span><img src="assets/logo/giannis-logo.png" alt="Giannis" class="footer-logo-mark giannis-logo"> Giannis Antetokounmpo #34</span>
-  <span>Page 2 of 2 · <a href="index.html" style="color:var(--white);"><span aria-hidden="true">←</span> Story Page</a></span>
+<footer class="footer" role="contentinfo">
+  <span>
+    <img src="assets/logo/giannis-logo.png" alt="" class="footer-logo-mark giannis-logo" width="16" height="16">
+    Giannis Antetokounmpo #34
+  </span>
+  <span>Page 2 of 2 · <a href="index.html"><span aria-hidden="true">←</span> Story Page</a></span>
   <span>Fan Tribute · Not Affiliated with NBA</span>
 </footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+  <button class="lightbox-close" aria-label="Close lightbox">Close</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <div class="lightbox-info">
+    <h4 id="lightboxTitle"></h4>
+    <span id="lightboxCat"></span>
+  </div>
+</div>
 
 <script type="application/ld+json">
 {

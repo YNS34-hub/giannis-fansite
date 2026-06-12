@@ -1,52 +1,22 @@
 /* ═══════════════════════════════════════════════════════
-   Giannis Antetokounmpo Fansite — Data & Interactions
+   Giannis Antetokounmpo Fansite — Interactions
    ═══════════════════════════════════════════════════════ */
 
 // ── Video Data (YouTube external links) ──
 const videoData = [
-  {
-    youtubeId: '02JLHU1jxDs',
-    title: 'Nastiest Dunks of 2024',
-    desc: 'GREEK FREAK — Most devastating slams',
-    platform: 'YouTube', duration: '03:42', category: 'DUNKS'
-  },
-  {
-    youtubeId: 'wHPLeWsAQw4',
-    title: '50 PTS & 5 BLKS Masterclass',
-    desc: 'Legendary close-out performance in Game 6',
-    platform: 'YouTube', duration: '02:18', category: 'FINALS'
-  },
-  {
-    youtubeId: '7tnVGkNyfyA',
-    title: 'A Kid From Sepolia',
-    desc: 'From Athens streets to NBA MVP — the origin story',
-    platform: 'YouTube', duration: '04:55', category: 'STORY'
-  },
-  {
-    youtubeId: 'BxISa1iuTC4',
-    title: 'Dunks Getting More Aggressive',
-    desc: 'Each slam more powerful than the last',
-    platform: 'YouTube', duration: '02:30', category: 'DUNKS'
-  },
-  {
-    youtubeId: 'ePlcXPEQw1M',
-    title: 'Increasingly More Freakish',
-    desc: 'Plays that defy physics and logic',
-    platform: 'YouTube', duration: '03:15', category: 'HIGHLIGHTS'
-  },
-  {
-    youtubeId: 'eMnstr2t14M',
-    title: 'Emotional MVP Speech',
-    desc: '2019 NBA Awards — the heart of a champion',
-    platform: 'YouTube', duration: '05:20', category: 'MVP SPEECH'
-  }
+  { youtubeId:'02JLHU1jxDs', title:'Nastiest Dunks of 2024', desc:'GREEK FREAK — Most devastating slams', platform:'YouTube', duration:'03:42', category:'DUNKS' },
+  { youtubeId:'wHPLeWsAQw4', title:'50 PTS & 5 BLKS Masterclass', desc:'Legendary close-out performance in Game 6', platform:'YouTube', duration:'02:18', category:'FINALS' },
+  { youtubeId:'7tnVGkNyfyA', title:'A Kid From Sepolia', desc:'From Athens streets to NBA MVP — the origin story', platform:'YouTube', duration:'04:55', category:'STORY' },
+  { youtubeId:'BxISa1iuTC4', title:'Dunks Getting More Aggressive', desc:'Each slam more powerful than the last', platform:'YouTube', duration:'02:30', category:'DUNKS' },
+  { youtubeId:'ePlcXPEQw1M', title:'Increasingly More Freakish', desc:'Plays that defy physics and logic', platform:'YouTube', duration:'03:15', category:'HIGHLIGHTS' },
+  { youtubeId:'eMnstr2t14M', title:'Emotional MVP Speech', desc:'2019 NBA Awards — the heart of a champion', platform:'YouTube', duration:'05:20', category:'MVP SPEECH' }
 ];
 
-// ── Gallery Data (29 wallpapers + filter tags) ──
+// ── Gallery Data (35 wallpapers + filter tags) ──
 const galleryData = [
   { file:'1725239083-79e882dc1b6f011-682x1024.jpg', title:'Greek Freak Portrait', cat:'Editorial · 2024', tags:['portrait','phone'] },
   { file:'EqJAFzEXMAAeiYw.jpg',                     title:'Rise to Greatness',   cat:'Action · 2023',    tags:['action','desktop'] },
-  { file:'F6uUMKDXMAAzjI3.jpg',                     title:'Dominant Force',      cat:'Dunk · 2024',      tags:['action','dunks'] },
+  { file:'F6uUMKDXMAAzjI3.jpg',                     title:'Dominant Force',      cat:'Dunk · 2024',      tags:['action','desktop'] },
   { file:'F9Y6NH2boAArd65.jpg',                     title:'Game Face',           cat:'Portrait · 2023',  tags:['portrait','phone'] },
   { file:'FMLPud8X0AAxiy3.jpg',                     title:'Intensity',           cat:'Action · 2024',    tags:['action','desktop'] },
   { file:'FrNoqhbWIAEjy-2.jpg',                     title:'Champion Mindset',    cat:'Editorial · 2024', tags:['championship','desktop'] },
@@ -85,26 +55,23 @@ const galleryData = [
 function renderVideos() {
   const grid = document.getElementById('videoGrid');
   if (!grid) return;
-  grid.innerHTML = videoData.map(v => `
-    <a href="https://youtube.com/watch?v=${v.youtubeId}" target="_blank" rel="noopener" class="video-cell">
-      <div class="thumb-wrap">
-        <img src="https://img.youtube.com/vi/${v.youtubeId}/maxresdefault.jpg"
-             alt="${v.title}" loading="lazy" decoding="async"
-             data-fallback="https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg">
-        <span class="play-btn"></span>
-        <span class="video-duration">${v.duration}</span>
-        <span class="video-category">${v.category}</span>
-      </div>
-      <div class="info">
-        <h3>${v.title}</h3>
-        <p>${v.desc}</p>
-        <span class="platform">▶ ${v.platform}</span>
-      </div>
-    </a>
-  `).join('');
+  grid.innerHTML = videoData.map(function(v) { return ''
+    + '<a href="https://youtube.com/watch?v=' + v.youtubeId + '" target="_blank" rel="noopener" class="video-cell">'
+    + '<div class="thumb-wrap">'
+    + '<img src="https://img.youtube.com/vi/' + v.youtubeId + '/maxresdefault.jpg"'
+    + ' alt="' + v.title + '" loading="lazy" decoding="async" width="480" height="270"'
+    + ' data-fallback="https://img.youtube.com/vi/' + v.youtubeId + '/hqdefault.jpg">'
+    + '<span class="play-btn"></span>'
+    + '<span class="video-duration">' + v.duration + '</span>'
+    + '<span class="video-category">' + v.category + '</span>'
+    + '</div>'
+    + '<div class="info"><h3>' + v.title + '</h3><p>' + v.desc + '</p>'
+    + '<span class="platform">▶ ' + v.platform + '</span></div>'
+    + '</a>';
+  }).join('');
 
-  // YouTube 缩略图回退：maxresdefault → hqdefault
-  grid.querySelectorAll('img[data-fallback]').forEach(img => {
+  // YouTube thumbnail fallback: maxresdefault → hqdefault
+  grid.querySelectorAll('img[data-fallback]').forEach(function(img) {
     img.addEventListener('error', function onErr() {
       if (this.dataset.fallback && this.src !== this.dataset.fallback) {
         this.src = this.dataset.fallback;
@@ -114,31 +81,30 @@ function renderVideos() {
 }
 
 // ── Render Gallery Cards ──
-function renderGallery(filter = 'all') {
-  const grid = document.getElementById('galleryGrid');
+function renderGallery(filter) {
+  filter = filter || 'all';
+  var grid = document.getElementById('galleryGrid');
   if (!grid) return;
-  const items = filter === 'all'
+  var items = filter === 'all'
     ? galleryData
-    : galleryData.filter(g => g.tags.includes(filter));
-  grid.innerHTML = items.map(g => `
-    <div class="gallery-card">
-      <img src="assets/wallpapers/${g.file}"
-           alt="${g.title}" loading="lazy" decoding="async">
-      <div class="gallery-overlay">
-        <h3>${g.title}</h3>
-        <span>${g.cat}</span>
-        <div class="gallery-actions">
-          <a href="assets/wallpapers/${g.file}" target="_blank" class="view-hd" onclick="event.stopPropagation()">VIEW HD</a>
-          <a href="assets/wallpapers/${g.file}" download class="view-hd" onclick="event.stopPropagation()">DOWNLOAD</a>
-        </div>
-      </div>
-    </div>
-  `).join('');
+    : galleryData.filter(function(g) { return g.tags.indexOf(filter) !== -1; });
+  grid.innerHTML = items.map(function(g) { return ''
+    + '<div class="gallery-card" data-src="assets/wallpapers/' + g.file + '" data-title="' + g.title + '" data-cat="' + g.cat + '">'
+    + '<img src="assets/wallpapers/' + g.file + '"'
+    + ' alt="' + g.title + ' — Giannis Antetokounmpo" loading="lazy" decoding="async">'
+    + '<div class="gallery-overlay">'
+    + '<h3>' + g.title + '</h3>'
+    + '<span>' + g.cat + '</span>'
+    + '<div class="gallery-actions">'
+    + '<a href="assets/wallpapers/' + g.file + '" target="_blank" class="view-hd" onclick="event.stopPropagation()">View HD</a>'
+    + '<a href="assets/wallpapers/' + g.file + '" download class="view-hd" onclick="event.stopPropagation()">Download</a>'
+    + '</div></div></div>';
+  }).join('');
 
-  // 图片加载失败时的回退处理（事件委托）
-  grid.querySelectorAll('img[loading="lazy"]').forEach(img => {
+  // Image error fallback
+  grid.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
     img.addEventListener('error', function onError() {
-      const fallback = document.createElement('div');
+      var fallback = document.createElement('div');
       fallback.className = 'img-fallback';
       fallback.innerHTML = '<span>' + this.alt + '</span>';
       this.replaceWith(fallback);
@@ -146,12 +112,58 @@ function renderGallery(filter = 'all') {
   });
 }
 
+// ── Lightbox ──
+function initLightbox() {
+  var lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxTitle = document.getElementById('lightboxTitle');
+  var lightboxCat = document.getElementById('lightboxCat');
+  var closeBtn = lightbox.querySelector('.lightbox-close');
+
+  function open(src, title, cat) {
+    lightboxImg.src = src;
+    lightboxImg.alt = title;
+    lightboxTitle.textContent = title;
+    lightboxCat.textContent = cat;
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  // Delegate click on gallery cards
+  document.addEventListener('click', function(e) {
+    var card = e.target.closest('.gallery-card');
+    if (!card) return;
+    // Don't open lightbox if user clicked View HD or Download
+    if (e.target.closest('.gallery-actions')) return;
+    var src = card.dataset.src;
+    var title = card.dataset.title;
+    var cat = card.dataset.cat;
+    if (src) open(src, title, cat);
+  });
+
+  closeBtn.addEventListener('click', close);
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) close();
+  });
+
+  // Keyboard: ESC to close
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) close();
+  });
+}
+
 // ── Gallery Filters ──
 function initGalleryFilters() {
-  const btns = document.querySelectorAll('.filter-btn');
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      btns.forEach(b => b.classList.remove('active'));
+  var btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       renderGallery(btn.dataset.filter);
     });
@@ -160,158 +172,153 @@ function initGalleryFilters() {
 
 // ── Count-Up Animation ──
 function initCountUp() {
-  // 尊重用户减少动画偏好
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const nums = document.querySelectorAll('.stat-cell .num[data-target]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  var nums = document.querySelectorAll('.stat-cell .num[data-target]');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const raw = el.dataset.target;
-      // extract numeric part and optional suffix (e.g. "54.5%")
-      const match = raw.match(/^([\d.]+)(.*)$/);
+      var el = entry.target;
+      var raw = el.dataset.target;
+      // Extract numeric part and suffix (e.g. "19,500" or "54.5%")
+      var match = raw.match(/^([\d,.]+)(.*)$/);
       if (!match) return;
-      const target = parseFloat(match[1]);
-      const suffix = match[2] || '';
-      const isFloat = match[1].includes('.');
-      const duration = 1500; const start = performance.now();
+      var numStr = match[1].replace(/,/g, '');
+      var target = parseFloat(numStr);
+      var suffix = match[2] || '';
+      var hasComma = match[1].indexOf(',') !== -1;
+      var isFloat = numStr.indexOf('.') !== -1;
+      var duration = 1500;
+      var start = performance.now();
 
       function tick(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = target * eased;
-        el.textContent = isFloat ? current.toFixed(1) + suffix : Math.floor(current).toLocaleString() + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-        else el.textContent = raw;
+        var elapsed = now - start;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = target * eased;
+        var display;
+        if (isFloat) {
+          display = current.toFixed(1);
+        } else if (hasComma) {
+          display = Math.floor(current).toLocaleString();
+        } else {
+          display = Math.floor(current).toLocaleString();
+        }
+        el.textContent = display + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = raw;
+        }
       }
       requestAnimationFrame(tick);
       observer.unobserve(el);
     });
   }, { threshold: 0.4 });
-  nums.forEach(n => observer.observe(n));
+  nums.forEach(function(n) { observer.observe(n); });
 }
 
 // ── Active Nav Tracking ──
 function initActiveNav() {
-  const sections = document.querySelectorAll('section[id]');
-  const links = document.querySelectorAll('.nav-links a');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  var sections = document.querySelectorAll('section[id]');
+  var links = document.querySelectorAll('.nav-links a');
+  if (!sections.length || !links.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
       if (!entry.isIntersecting) return;
-      const id = entry.target.id;
-      links.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      var id = entry.target.id;
+      links.forEach(function(a) {
+        var href = a.getAttribute('href');
+        a.classList.toggle('active', href === '#' + id || href === 'index.html#' + id);
       });
     });
   }, { threshold: 0.3, rootMargin: '-60px 0px -60% 0px' });
-  sections.forEach(s => observer.observe(s));
+  sections.forEach(function(s) { observer.observe(s); });
 }
 
 // ── Scroll Reveal ──
 function initScrollReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
       if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 }
 
 // ── Lazy Load Fallback ──
 function initLazyImages() {
   if ('loading' in HTMLImageElement.prototype) return;
-  const lazyObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+  var lazyObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
       if (!e.isIntersecting) return;
-      const img = e.target;
+      var img = e.target;
       if (img.dataset.src) { img.src = img.dataset.src; }
       lazyObserver.unobserve(img);
     });
   });
-  document.querySelectorAll('img[loading="lazy"]').forEach(img => lazyObserver.observe(img));
+  document.querySelectorAll('img[loading="lazy"]').forEach(function(img) { lazyObserver.observe(img); });
 }
 
 // ── Intro Video Overlay ──
 function initIntro() {
-  const overlay = document.getElementById('introOverlay');
+  var overlay = document.getElementById('introOverlay');
   if (!overlay) return;
 
-  // 安全读取 sessionStorage（隐私模式可能抛出异常）
-  let introAlreadyPlayed = false;
+  var introAlreadyPlayed = false;
   try { introAlreadyPlayed = sessionStorage.getItem('giannisIntroPlayed') === 'true'; } catch (_) {}
 
-  if (introAlreadyPlayed) {
-    overlay.remove();
-    return;
-  }
+  if (introAlreadyPlayed) { overlay.remove(); return; }
 
-  const pre = document.getElementById('introPre');
-  const video = document.getElementById('introVideo');
-  const enterBtn = document.getElementById('introEnterBtn');
-  const skipBtn = document.getElementById('introSkip');
-
-  let introDone = false;
+  var pre = document.getElementById('introPre');
+  var video = document.getElementById('introVideo');
+  var enterBtn = document.getElementById('introEnterBtn');
+  var skipBtn = document.getElementById('introSkip');
+  var introDone = false;
 
   function finishIntro() {
     if (introDone) return;
     introDone = true;
     try { sessionStorage.setItem('giannisIntroPlayed', 'true'); } catch (_) {}
     overlay.classList.add('is-hidden');
-    // 800ms 后移除 DOM，匹配 CSS transition
-    setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 800);
+    setTimeout(function() { if (overlay.parentNode) overlay.remove(); }, 800);
   }
 
-  // 视频加载失败直接进入主页
-  video.addEventListener('error', () => {
-    if (!introDone) finishIntro();
-  });
+  video.addEventListener('error', function() { if (!introDone) finishIntro(); });
 
-  // 视频无法播放时（如格式不支持）
-  video.addEventListener('stalled', () => {
-    // stalled 可能只是缓冲，等待 1s 后若还没开始播放则跳过
-    setTimeout(() => {
+  video.addEventListener('stalled', function() {
+    setTimeout(function() {
       if (!introDone && video.readyState < 2) finishIntro();
     }, 1000);
   });
 
-  // 点击 ENTER THE COURT
-  enterBtn.addEventListener('click', () => {
+  enterBtn.addEventListener('click', function() {
     pre.classList.add('is-hidden');
     video.src = 'assets/intro/giannis-intro.webm';
     video.classList.add('is-playing');
     skipBtn.classList.add('is-visible');
-
-    const playPromise = video.play();
+    var playPromise = video.play();
     if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // 自动播放被阻止或加载失败
-        if (!introDone) finishIntro();
-      });
+      playPromise.catch(function() { if (!introDone) finishIntro(); });
     }
   });
 
-  // 视频播放结束
-  video.addEventListener('ended', () => {
-    finishIntro();
-  });
+  video.addEventListener('ended', function() { finishIntro(); });
 
-  // SKIP 按钮
-  skipBtn.addEventListener('click', () => {
+  skipBtn.addEventListener('click', function() {
     video.pause();
     finishIntro();
   });
 
-  // 开始预加载视频
   video.src = 'assets/intro/giannis-intro.webm';
   video.load();
 }
 
 // ── Init ──
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   initIntro();
   renderVideos();
   renderGallery();
+  initLightbox();
   initGalleryFilters();
   initCountUp();
   initActiveNav();
