@@ -17,18 +17,18 @@
   --text-muted: #8E9192;
   --font-display: 'Epilogue', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --section-gap: 160px;
-  --grid-margin: 40px;
+  --section-gap: clamp(80px, 12vw, 160px);
+  --grid-margin: clamp(16px, 4vw, 40px);
   --element-gap: 20px;
   --nav-padding: 10px;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; max-width: 100%; overflow-x: hidden; scroll-padding-top: 60px; }
 body {
   font-family: var(--font-body); background: var(--black); color: var(--text);
   line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: hidden; max-width: 100%;
 }
 
 /* ── Intro Video Overlay ── */
@@ -109,6 +109,7 @@ body {
   text-decoration: none; display: flex; align-items: center; gap: 8px;
 }
 .nav-logo-mark { height: 18px; width: auto; filter: brightness(0) invert(1); }
+.giannis-logo { height: 22px; filter: none; }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {
   font-family: var(--font-body); font-size: 12px; font-weight: 600;
@@ -116,7 +117,7 @@ body {
   text-decoration: none; transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--white); }
-@media (max-width: 768px) { .nav-links { display: none; } .nav { padding: var(--nav-padding) 20px; } }
+@media (max-width: 768px) { .nav { padding: var(--nav-padding) 20px; } }
 
 /* ── Container ── */
 .container { max-width: 1800px; margin: 0 auto; padding: 0 var(--grid-margin); }
@@ -282,7 +283,7 @@ body {
   white-space: nowrap; user-select: none;
 }
 @media (max-width: 1024px) { .origin-layout { grid-template-columns: 45fr 55fr; } }
-@media (max-width: 768px) { .origin-layout { grid-template-columns: 1fr; } }
+@media (max-width: 900px)  { .origin-layout { grid-template-columns: 1fr; } }
 
 /* Left: Image Card */
 .origin-image-card {
@@ -651,7 +652,7 @@ body {
   background: var(--surface); color: var(--text-muted); min-height: 200px;
   font-family: var(--font-body); font-size: 12px; text-align: center;
 }
-.img-fallback::before { content: '📷'; display: block; font-size: 2rem; margin-bottom: 8px; }
+.img-fallback::before { content: ''; display: block; width: 32px; height: 32px; margin-bottom: 8px; background: var(--gray-mid); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E"); }
 
 /* ── CTA Button ── */
 .btn {
@@ -686,6 +687,7 @@ body {
 }
 @media (max-width: 768px) { .footer { padding: var(--nav-padding) 20px; flex-direction: column; text-align: center; } }
 .footer-logo-mark { height: 14px; width: auto; filter: brightness(0) invert(1); vertical-align: middle; margin-right: 2px; }
+.footer-logo-mark.giannis-logo { height: 16px; filter: none; }
 
 /* ── Animations (see bottom for reveal) ── */
 
@@ -840,3 +842,456 @@ body {
 .nav-links a.active { color: var(--white); }
 .reveal { opacity: 0; transform: translateY(24px); transition: all 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════ */
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .stat-cell .bar span { transition: none; }
+}
+
+/* 键盘焦点可见 */
+:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+.nav-links a:focus-visible {
+  outline-color: var(--white);
+  outline-offset: 4px;
+  color: var(--white);
+}
+.btn:focus-visible, .intro-enter-btn:focus-visible, .intro-skip:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+.filter-btn:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+  border-color: var(--white);
+}
+.video-cell:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: -2px;
+}
+
+/* 跳过导航链接（可选，对键盘用户友好） */
+.skip-link {
+  position: absolute; top: -100px; left: 16px;
+  background: var(--white); color: var(--black);
+  padding: 8px 16px; z-index: 10001;
+  font-family: var(--font-body); font-size: 12px; font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus { top: 16px; }
+
+/* ═══════════════════════════════════════════════════════
+   ENHANCED MOBILE RESPONSIVENESS
+   ═══════════════════════════════════════════════════════ */
+
+/* 375px 窄屏优化 */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2.25rem, 12vw, 3.5rem);
+  }
+  .hero-sub {
+    font-size: 14px;
+  }
+  .hero-meta {
+    gap: 20px;
+  }
+  .hero-meta-item .num {
+    font-size: 1.5rem;
+  }
+  .hero-meta-item .lbl {
+    font-size: 0.75rem;
+  }
+  .theme-line {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+  .stat-cell {
+    padding: 32px 20px;
+  }
+  .stat-cell .num {
+    font-size: 2rem;
+  }
+  .stat-cell .lbl {
+    font-size: 10px;
+  }
+  .stats-intro {
+    font-size: 14px;
+  }
+  .dna-card {
+    padding: 24px 20px;
+  }
+  .figure-data-cell {
+    padding: 24px 16px;
+  }
+  .figure-data-cell .val {
+    font-size: 1.5rem;
+  }
+  .btn {
+    padding: 10px 18px;
+    font-size: 11px;
+  }
+  .hero-content {
+    padding: 80px 20px 32px;
+  }
+  .origin-image-card {
+    min-height: 300px;
+    max-height: 300px;
+  }
+  .origin-quote {
+    font-size: 1.1rem;
+  }
+  .career-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 20px 0;
+  }
+  .career-image {
+    height: 200px;
+  }
+  .project-row, .col-header {
+    grid-template-columns: 1fr 0.6fr;
+    font-size: 13px;
+  }
+  .project-row .meta:nth-child(3),
+  .col-header span:nth-child(3) {
+    display: none;
+  }
+  .legacy-title {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+  .legacy-sub {
+    font-size: 14px;
+  }
+  .intro-pre-title {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+  .intro-enter-btn {
+    padding: 12px 32px;
+    font-size: 0.875rem;
+  }
+}
+
+/* 430px 中窄屏 */
+@media (min-width: 431px) and (max-width: 640px) {
+  .hero-title {
+    font-size: clamp(2.75rem, 10vw, 4rem);
+  }
+  .hero-meta {
+    gap: 28px;
+  }
+  .stat-cell {
+    padding: 36px 24px;
+  }
+  .stat-cell .num {
+    font-size: 2.25rem;
+  }
+}
+
+/* 768px 平板 */
+@media (max-width: 768px) {
+  /* 移动端导航优化 */
+  .nav {
+    padding: 8px 16px;
+    flex-wrap: nowrap;
+  }
+  .nav-brand {
+    font-size: 10px;
+    gap: 6px;
+  }
+  .nav-logo-mark {
+    height: 14px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  /* 统计卡片双列 */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 媒体页视频 — 640px 已处理单列，768px 保持双列 */
+
+  /* 图库 — 平板保持双列，480px 已处理单列 */
+
+  /* Hero 不溢出 */
+  .hero-text {
+    max-width: 100%;
+  }
+
+  /* 导航不遮挡内容 */
+  .hero-content {
+    padding-top: 80px;
+  }
+
+  /* 职业生涯表格简化 */
+  .project-row, .col-header {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .project-row .meta:nth-child(3),
+  .col-header span:nth-child(3) {
+    display: none;
+  }
+
+  /* 图库筛选器滚动 */
+  .gallery-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .gallery-filters::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+/* 1024px 小桌面 */
+@media (max-width: 1024px) {
+  .hero-meta {
+    gap: 28px;
+  }
+  .hero-meta-item .num {
+    font-size: 1.65rem;
+  }
+  .hero-content {
+    padding-bottom: 32px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   LAYOUT RESCUE — 900px 综合断点
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* 所有主要双栏布局 → 单列 */
+  .career-item {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+    padding: 24px 0;
+  }
+  .career-item.is-featured {
+    grid-template-columns: 1fr !important;
+  }
+  .career-year {
+    text-align: left;
+  }
+  .career-year-num {
+    font-size: clamp(1.75rem, 8vw, 3rem);
+    line-height: 1;
+  }
+  .career-image {
+    grid-column: 1;
+    width: 100%;
+    height: clamp(200px, 40vw, 300px);
+  }
+  .career-item.is-featured .career-image {
+    height: clamp(240px, 50vw, 380px);
+  }
+  .career-image img {
+    object-fit: cover;
+  }
+
+  /* Story body → 单列 */
+  .story-body {
+    grid-template-columns: 40px 1fr !important;
+    gap: 16px;
+    padding: 28px 20px 28px 4px;
+  }
+  .story-thumb {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-top: 12px;
+  }
+  .story-num {
+    font-size: 2.25rem;
+    text-align: left;
+  }
+
+  /* 卡片网格 → 双列 */
+  .identity-grid,
+  .dna-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Origin image card 限制高度 */
+  .origin-image-card {
+    min-height: 380px;
+    max-height: 450px;
+  }
+
+  /* Hero meta 换行 */
+  .hero-meta {
+    gap: 24px;
+  }
+  .hero-meta-item .num {
+    font-size: 1.5rem;
+  }
+
+  /* 减小大空白 */
+  .theme-statement {
+    padding: clamp(60px, 10vw, 100px) var(--grid-margin);
+  }
+  .final-legacy {
+    padding: clamp(60px, 12vw, 120px) var(--grid-margin);
+    min-height: auto;
+  }
+  .playing-identity {
+    padding: clamp(48px, 8vw, 80px) 0;
+  }
+  .mini-timeline {
+    padding: clamp(48px, 8vw, 80px) 0;
+  }
+  .profile-header {
+    padding-top: clamp(48px, 8vw, 80px);
+    padding-bottom: clamp(32px, 5vw, 60px);
+  }
+  .page-cta {
+    padding: clamp(60px, 10vw, 100px) 0;
+  }
+
+  /* 图库双列 */
+  .gallery-grid {
+    columns: 2 200px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   640px 以下 → 全部单列
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .identity-grid,
+  .dna-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .career-image {
+    height: 200px;
+  }
+  .career-item.is-featured .career-image {
+    height: 260px;
+  }
+
+  .identity-card {
+    padding: 24px 20px;
+  }
+  .dna-card {
+    padding: 28px 20px;
+  }
+  .stat-cell {
+    padding: 28px 20px;
+  }
+  .stat-cell .num {
+    font-size: 2rem;
+  }
+
+  .origin-image-card {
+    min-height: 280px;
+    max-height: 360px;
+  }
+
+  .gallery-grid {
+    columns: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   375px 窄屏微调
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+  .hero-sub {
+    font-size: 14px;
+  }
+  .hero-meta {
+    gap: 16px;
+  }
+  .hero-meta-item .num {
+    font-size: 1.35rem;
+  }
+  .hero-meta-item .lbl {
+    font-size: 0.7rem;
+  }
+  .hero-content {
+    padding: 72px 16px 28px;
+  }
+  .hero-text {
+    max-width: 100%;
+  }
+  .btn {
+    padding: 10px 16px;
+    font-size: 10px;
+  }
+  .section-title {
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+  }
+  .theme-line {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+  .story-body {
+    grid-template-columns: 30px 1fr !important;
+    gap: 10px;
+    padding: 20px 14px 20px 2px;
+  }
+  .story-num {
+    font-size: 1.75rem;
+  }
+  .story-content h4 {
+    font-size: 1.15rem;
+  }
+  .story-content p {
+    font-size: 0.9rem;
+  }
+  .story-tag {
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+  .figure-data-cell {
+    padding: 20px 14px;
+  }
+  .figure-data-cell .val {
+    font-size: 1.35rem;
+  }
+  .career-content h4 {
+    font-size: 1rem;
+  }
+  .career-content p {
+    font-size: 0.85rem;
+  }
+  .career-tag {
+    font-size: 8px;
+  }
+}

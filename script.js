@@ -72,7 +72,13 @@ const galleryData = [
   { file:'HKa2pjvWAAAzjvZ.jpg',                     title:'Joy of the Game',     cat:'Moment · 2023',    tags:['portrait','bucks'] },
   { file:'HKd_oxiWIAAhdsd.jpg',                     title:'Lockdown D',          cat:'Defense · 2024',   tags:['action','desktop'] },
   { file:'HKeAaKXWgAAPvs1.jpg',                     title:'Classic Form',        cat:'Action · 2024',    tags:['action','phone'] },
-  { file:'HKgUYkuXoAAP0f6.jpg',                     title:'Unstoppable Force',   cat:'Editorial · 2024', tags:['championship','desktop'] }
+  { file:'HKgUYkuXoAAP0f6.jpg',                     title:'Unstoppable Force',   cat:'Editorial · 2024', tags:['championship','desktop'] },
+  { file:'1774d4382861e766427af04211f1f581.jpg',    title:'Championship DNA',    cat:'Editorial · 2025', tags:['championship','desktop'] },
+  { file:'HCm0ny-W8AApAbH.jpg',                     title:'Iconic Pose',         cat:'Portrait · 2025',  tags:['portrait','desktop'] },
+  { file:'HDfD6PHbEAAA1N5.jpg',                     title:'Greek Roots',         cat:'Editorial · 2025', tags:['portrait','phone'] },
+  { file:'download.jpg',                             title:'Milwaukee Night',     cat:'Action · 2025',    tags:['action','bucks'] },
+  { file:'download.png',                             title:'Freak Logo',          cat:'Brand · 2025',     tags:['portrait','desktop'] },
+  { file:'images.jpg',                               title:'The Journey',         cat:'Moment · 2025',    tags:['action','desktop'] }
 ];
 
 // ── Render Video Cards ──
@@ -84,7 +90,7 @@ function renderVideos() {
       <div class="thumb-wrap">
         <img src="https://img.youtube.com/vi/${v.youtubeId}/maxresdefault.jpg"
              alt="${v.title}" loading="lazy" decoding="async"
-             onerror="this.src='https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg'">
+             data-fallback="https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg">
         <span class="play-btn"></span>
         <span class="video-duration">${v.duration}</span>
         <span class="video-category">${v.category}</span>
@@ -96,6 +102,15 @@ function renderVideos() {
       </div>
     </a>
   `).join('');
+
+  // YouTube 缩略图回退：maxresdefault → hqdefault
+  grid.querySelectorAll('img[data-fallback]').forEach(img => {
+    img.addEventListener('error', function onErr() {
+      if (this.dataset.fallback && this.src !== this.dataset.fallback) {
+        this.src = this.dataset.fallback;
+      }
+    }, { once: true });
+  });
 }
 
 // ── Render Gallery Cards ──
@@ -108,8 +123,7 @@ function renderGallery(filter = 'all') {
   grid.innerHTML = items.map(g => `
     <div class="gallery-card">
       <img src="assets/wallpapers/${g.file}"
-           alt="${g.title}" loading="lazy" decoding="async"
-           onerror="this.parentElement.innerHTML='<div class=\\'img-fallback\\'><span>${g.title}</span><small>${g.cat}</small></div>'">
+           alt="${g.title}" loading="lazy" decoding="async">
       <div class="gallery-overlay">
         <h3>${g.title}</h3>
         <span>${g.cat}</span>
@@ -120,6 +134,16 @@ function renderGallery(filter = 'all') {
       </div>
     </div>
   `).join('');
+
+  // 图片加载失败时的回退处理（事件委托）
+  grid.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    img.addEventListener('error', function onError() {
+      const fallback = document.createElement('div');
+      fallback.className = 'img-fallback';
+      fallback.innerHTML = '<span>' + this.alt + '</span>';
+      this.replaceWith(fallback);
+    }, { once: true });
+  });
 }
 
 // ── Gallery Filters ──
@@ -136,6 +160,8 @@ function initGalleryFilters() {
 
 // ── Count-Up Animation ──
 function initCountUp() {
+  // 尊重用户减少动画偏好
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const nums = document.querySelectorAll('.stat-cell .num[data-target]');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -211,8 +237,11 @@ function initIntro() {
   const overlay = document.getElementById('introOverlay');
   if (!overlay) return;
 
-  // 当前标签页只播放一次
-  if (sessionStorage.getItem('giannisIntroPlayed') === 'true') {
+  // 安全读取 sessionStorage（隐私模式可能抛出异常）
+  let introAlreadyPlayed = false;
+  try { introAlreadyPlayed = sessionStorage.getItem('giannisIntroPlayed') === 'true'; } catch (_) {}
+
+  if (introAlreadyPlayed) {
     overlay.remove();
     return;
   }
@@ -227,7 +256,7 @@ function initIntro() {
   function finishIntro() {
     if (introDone) return;
     introDone = true;
-    sessionStorage.setItem('giannisIntroPlayed', 'true');
+    try { sessionStorage.setItem('giannisIntroPlayed', 'true'); } catch (_) {}
     overlay.classList.add('is-hidden');
     // 800ms 后移除 DOM，匹配 CSS transition
     setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 800);
