@@ -11,7 +11,7 @@ A fan-made visual study of **sports editorial design, long-form storytelling, an
 
 ## Direction
 
-The site uses a high-contrast sports-magazine language rather than a conventional profile page. Large typography, full-width imagery, statistics, milestones, and archive-style sections are combined into one continuous narrative.
+The site uses a high-contrast sports-magazine language rather than a conventional profile page. Large typography, full-width imagery, statistics, milestones, highlights, and archive-style sections are combined into one continuous narrative.
 
 ## Sections
 
@@ -20,9 +20,9 @@ The site uses a high-contrast sports-magazine language rather than a conventiona
 - **Player Profile** — key physical and player information
 - **Greek Freak DNA** — visual summary of style and athletic traits
 - **Career Statistics** — selected performance data
-- **Highlight Reel** — highlight-style visual presentation
+- **Media** — highlights, timeline, and image-focused gallery
 - **Trophy Room** — major honors and achievements
-- **Wallpaper Archive** — image-focused fan gallery
+- **Wallpaper Archive** — curated fan gallery
 
 ## Visual system
 
@@ -40,14 +40,12 @@ The site uses a high-contrast sports-magazine language rather than a conventiona
 
 ```text
 .
-├── index.html
-├── report.html
-├── template.html
-├── assets/
-│   ├── wallpapers/
-│   ├── awards/
-│   └── video-posters/
-└── docs/
+├── index.html        # main editorial experience
+├── media.html        # highlights and gallery
+├── script.js         # interaction layer
+├── styles.css        # visual system
+├── assets/           # imagery, awards, wallpapers, posters
+└── docs/             # repository presentation assets
 ```
 
 ## Attribution
