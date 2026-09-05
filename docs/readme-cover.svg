@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Giannis Antetokounmpo editorial fansite">
+  <rect width="1200" height="360" fill="#0d0f0e"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#6aa77a"/>
+  <path d="M775 0V360" stroke="#2b332f" stroke-width="1"/>
+  <path d="M835 84h270M835 120h210M835 156h300M835 192h180M835 228h244" stroke="#6aa77a" stroke-width="3" opacity=".55"/>
+  <text x="64" y="58" font-family="Arial,Helvetica,sans-serif" font-size="14" letter-spacing="3.5" fill="#7d8782">SPORTS EDITORIAL / VISUAL STORYTELLING</text>
+  <text x="64" y="153" font-family="Arial,Helvetica,sans-serif" font-size="50" font-weight="700" letter-spacing="-1.5" fill="#f3f5f4">GIANNIS</text>
+  <text x="64" y="202" font-family="Arial,Helvetica,sans-serif" font-size="31" font-weight="700" letter-spacing="3" fill="#6aa77a">ANTETOKOUNMPO</text>
+  <text x="64" y="258" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#a2aaa6">Unofficial fan-made editorial website · HTML / CSS / JavaScript</text>
+  <text x="64" y="326" font-family="Arial,Helvetica,sans-serif" font-size="12" letter-spacing="2.4" fill="#656d69">VISUAL STUDY 04 / YNS34</text>
+</svg>
