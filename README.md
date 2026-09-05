@@ -1,61 +1,41 @@
-# Giannis Antetokounmpo Fansite
+# Giannis Antetokounmpo — Editorial Fansite
 
-A visual fan tribute website dedicated to Giannis Antetokounmpo, built with a dark sports-magazine aesthetic.  
-The site presents his origin story, player profile, career highlights, achievements, wallpapers, and legacy as one of the most dominant players in modern basketball.
+> A fan-made visual storytelling project exploring sports editorial design, responsive layout, and immersive athlete presentation.
 
-## Live Demo
+**Live demo:** https://yns34-hub.github.io/giannis-fansite/
 
-https://yns34-hub.github.io/giannis-fansite/
+**Status:** Personal frontend / visual-design project · unofficial and non-commercial
 
-## Project Overview
+This project is a visual tribute to Giannis Antetokounmpo. It uses a dark sports-magazine aesthetic to present his origin story, player profile, career milestones, achievements, highlights, wallpapers, and legacy.
 
-This project is a static fan-made website focused on visual storytelling.  
-It combines large-scale hero imagery, player statistics, milestone sections, highlight cards, and a wallpaper gallery to create an immersive Giannis-themed experience.
+## What this project explores
 
-## Main Sections
+- Sports editorial visual systems
+- Full-screen hero composition
+- Long-form storytelling on the web
+- Responsive content hierarchy
+- High-contrast typography and image treatment
+- Translating a creative brief into a complete frontend experience
 
-- **Hero Section**  
-  Full-screen visual introduction with bold typography and player identity.
+## Main sections
 
-- **Origin Story**  
-  A narrative section about Giannis’ journey from Athens to Milwaukee.
+- **Hero** — full-screen visual introduction and player identity
+- **Origin Story** — narrative presentation of Giannis' journey
+- **Player Profile** — key player information and physical profile
+- **Greek Freak DNA** — visual summary of play style and athletic traits
+- **Career Statistics** — selected performance data
+- **Highlight Reel** — curated highlight-style presentation
+- **Trophy Room** — major career honors
+- **Wallpaper Archive** — image-focused fan gallery
 
-- **Player Profile**  
-  Height, weight, wingspan, jersey number, and core player information.
-
-- **The Greek Freak DNA**  
-  A section highlighting Giannis’ physical tools, power, speed, and competitive motor.
-
-- **Career Statistics**  
-  Key career numbers and performance profile.
-
-- **Highlight Reel**  
-  Video-style highlight cards linking to external highlight content.
-
-- **Trophy Room**  
-  A visual honors section for MVPs, championship achievements, Finals MVP, DPOY, and other major awards.
-
-- **Wallpaper Archive**  
-  A high-resolution image gallery for Giannis fans.
-
-## Tech Stack
+## Tech stack
 
 - HTML
 - CSS
 - JavaScript
 - GitHub Pages
 
-## Design Style
-
-The website uses a black-and-white sports editorial style inspired by:
-
-- NBA player profile pages
-- Sports magazine layouts
-- Documentary-style storytelling
-- High-contrast poster design
-- Minimal typography-driven interfaces
-
-## Folder Structure
+## Repository structure
 
 ```text
 giannis-fansite/
@@ -67,3 +47,16 @@ giannis-fansite/
 │   ├── awards/
 │   └── video-posters/
 └── README.md
+```
+
+## Scope and attribution
+
+This is an **unofficial fan project** created for design and frontend experimentation. It is not affiliated with Giannis Antetokounmpo, the Milwaukee Bucks, or the NBA. Third-party imagery, names, statistics, and trademarks remain the property of their respective owners.
+
+## Author
+
+**Jie Tian**  
+Mathematics master's student exploring AI-assisted research, interactive systems, and digital product experiments.
+
+- Portfolio: https://yns34-hub.github.io/
+- GitHub: https://github.com/YNS34-hub
