@@ -1,4 +1,4 @@
-![Giannis Antetokounmpo editorial fansite](./docs/readme-cover.svg)
+![Giannis Antetokounmpo editorial fansite](./docs/github-cover.png)
 
 # Giannis Antetokounmpo — Editorial Fansite
 
